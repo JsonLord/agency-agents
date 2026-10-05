@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Experiment Spec",
+  "type": "object",
+  "required": ["hypothesis", "design"],
+  "properties": {
+    "hypothesis": {
+      "type": "string",
+      "description": "The hypothesis being tested"
+    },
+    "design": {
+      "type": "object",
+      "description": "Experimental design",
+      "additionalProperties": true
+    },
+    "variables": {
+      "type": "object",
+      "description": "Independent and dependent variables",
+      "properties": {
+        "independent": {
+          "type": "string"
+        },
+        "dependent": {
+          "type": "string"
+        }
+      }
+    },
+    "successCriteria": {
+      "type": "object",
+      "description": "Criteria for success/failure",
+      "additionalProperties": true
+    },
+    "ethicalConsiderations": {
+      "type": "string",
+      "description": "Ethical considerations"
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Additional metadata",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": false
+}

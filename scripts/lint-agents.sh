@@ -34,6 +34,15 @@ AGENT_DIRS=(
   specialized
   support
   testing
+  discovery
+  intelligence
+  hypothesis
+  proposition
+  experimentation
+  distribution
+  production
+  evaluation
+  decision
 )
 
 REQUIRED_FRONTMATTER=("name" "description" "color")

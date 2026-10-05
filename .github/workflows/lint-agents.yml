@@ -21,6 +21,15 @@ on:
       - "support/**"
       - "spatial-computing/**"
       - "specialized/**"
+      - "agents/discovery/**"
+      - "agents/intelligence/**"
+      - "agents/hypothesis/**"
+      - "agents/proposition/**"
+      - "agents/experimentation/**"
+      - "agents/distribution/**"
+      - "agents/production/**"
+      - "agents/evaluation/**"
+      - "agents/decision/**"
       # Changing the linter itself has to run it. Without these the whole-roster
       # job below never fires, and a new rule ships untested: the color check
       # went in this way and nothing in CI had ever looked at a color value.
@@ -43,7 +52,8 @@ jobs:
           FILES=$(git diff --name-only --diff-filter=ACMR origin/${{ github.base_ref }}...HEAD -- \
             ':(glob)academic/**/*.md' ':(glob)design/**/*.md' ':(glob)engineering/**/*.md' ':(glob)finance/**/*.md' ':(glob)game-development/**/*.md' ':(glob)gis/**/*.md' ':(glob)healthcare/**/*.md' ':(glob)marketing/**/*.md' ':(glob)paid-media/**/*.md' ':(glob)sales/**/*.md' ':(glob)security/**/*.md' ':(glob)product/**/*.md' \
             ':(glob)project-management/**/*.md' ':(glob)research/**/*.md' ':(glob)testing/**/*.md' ':(glob)support/**/*.md' \
-            ':(glob)spatial-computing/**/*.md' ':(glob)specialized/**/*.md')
+            ':(glob)spatial-computing/**/*.md' ':(glob)specialized/**/*.md' \
+            ':(glob)agents/discovery/**/*.md' ':(glob)agents/intelligence/**/*.md' ':(glob)agents/hypothesis/**/*.md' ':(glob)agents/proposition/**/*.md' ':(glob)agents/experimentation/**/*.md' ':(glob)agents/distribution/**/*.md' ':(glob)agents/production/**/*.md' ':(glob)agents/evaluation/**/*.md' ':(glob)agents/decision/**/*.md')
           {
             echo "files<<ENDOFLIST"
             echo "$FILES"

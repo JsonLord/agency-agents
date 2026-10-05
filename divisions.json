@@ -18,6 +18,15 @@
     "spatial-computing": { "label": "Spatial Computing", "icon": "Boxes", "color": "#06B6D4" },
     "specialized": { "label": "Specialized", "icon": "Sparkles", "color": "#6366F1" },
     "support": { "label": "Support", "icon": "LifeBuoy", "color": "#84CC16" },
-    "testing": { "label": "Testing", "icon": "FlaskConical", "color": "#F59E0B" }
+    "testing": { "label": "Testing", "icon": "FlaskConical", "color": "#F59E0B" },
+    "discovery": { "label": "Discovery", "icon": "Lightbulb", "color": "#FFC107" },
+    "intelligence": { "label": "Intelligence", "icon": "Brain", "color": "#2196F3" },
+    "hypothesis": { "label": "Hypothesis", "icon": "FlaskConical", "color": "#9C27B0" },
+    "proposition": { "label": "Proposition", "icon": "Target", "color": "#FF5722" },
+    "experimentation": { "label": "Experimentation", "icon": "Vial", "color": "#4CAF50" },
+    "distribution": { "label": "Distribution", "icon": "Share2", "color": "#00BCD4" },
+    "production": { "label": "Production", "icon": "Factory", "color": "#795548" },
+    "evaluation": { "label": "Evaluation", "icon": "ClipboardCheck", "color": "#607D8B" },
+    "decision": { "label": "Decision", "icon": "Gavel", "color": "#F44336" }
   }
 }

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Delegation Event",
+  "type": "object",
+  "required": ["agentId", "taskId", "timestamp"],
+  "properties": {
+    "agentId": {
+      "type": "string",
+      "description": "ID of the agent performing the task"
+    },
+    "taskId": {
+      "type": "string",
+      "description": "ID of the task being delegated"
+    },
+    "workflowId": {
+      "type": "string",
+      "description": "ID of the workflow this task belongs to (if any)"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the delegation occurred"
+    },
+    "context": {
+      "type": "object",
+      "description": "Context provided for the task",
+      "additionalProperties": true
+    },
+    "input": {
+      "type": "object",
+      "description": "Input parameters for the task",
+      "additionalProperties": true
+    },
+    "output": {
+      "type": "object",
+      "description": "Output/result of the task (if completed)",
+      "additionalProperties": true
+    },
+    "status": {
+      "type": "string",
+      "enum": ["assigned", "started", "completed", "failed", "cancelled"],
+      (like/dislike, trust, etc.)"
+    }
+  },
+  "additionalProperties": false
+}

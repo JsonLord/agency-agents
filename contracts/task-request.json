@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Task Request",
+  "type": "object",
+  "required": ["taskId", "agentId", "skillId", "parameters"],
+  "properties": {
+    "taskId": {
+      "type": "string",
+      "description": "Unique identifier for the task"
+    },
+    "agentId": {
+      "type": "string",
+      "description": "Identifier of the agent to perform the task"
+    },
+    "skillId": {
+      "type": "string",
+      "description": "Identifier of the skill to be used"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Parameters for the task",
+      "additionalProperties": true
+    },
+    "context": {
+      "type": "object",
+      "description": "Contextual information for the task",
+      "additionalProperties": true
+    },
+    "callback": {
+      "type": "object",
+      "description": "Callback information for task completion",
+      "additionalProperties": true
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5,
+      "description": "Priority of the task (1=lowest, 10=highest)"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Timeout in seconds"
+    }
+  },
+  "additionalProperties": false
+}

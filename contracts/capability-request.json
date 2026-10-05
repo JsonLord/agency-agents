@@ -1,0 +1,50 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Capability Request",
+  "type": "object",
+  "required": ["capabilityId", "parameters"],
+  "properties": {
+    "capabilityId": {
+      "type": "string",
+      "description": "Identifier of the capability being requested"
+    },
+    "parameters": {
+      "type": "object",
+      "description": "Parameters for the capability request",
+      "additionalProperties": true
+    },
+    "requester": {
+      "type": "object",
+      "description": "Agent or workflow making the request",
+      "properties": {
+        "agentId": {
+          "type": "string"
+        },
+        "workflowId": {
+          "type": "string"
+        },
+        "taskId": {
+          "type": "string"
+        }
+      }
+    },
+    "context": {
+      "type": "object",
+      "description": "Context for the capability request",
+      "additionalProperties": true
+    },
+    "priority": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5,
+      "description": "Priority of the request (1=lowest, 10=highest)"
+    },
+    "timeout": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Timeout in seconds"
+    }
+  },
+  "additionalProperties": false
+}

@@ -29,7 +29,7 @@ JSON="divisions.json"
 # into the repo), not a source-agent category. strategy/ holds playbooks and
 # runbooks (no agent frontmatter), not agents. Neither is a division — they must
 # never be scanned as source-agent categories.
-NON_DIVISION_DIRS=(examples scripts integrations strategy)
+NON_DIVISION_DIRS=(examples scripts integrations strategy agents)
 
 errors=0
 fail() { echo "ERROR $*"; errors=$((errors + 1)); }
@@ -51,12 +51,8 @@ canonical() {
 # clean checkout sees, so a local gitignored scratch dir (e.g. notes/) can't
 # produce a false failure.
 actual_dirs() {
-  local base
-  git ls-files | awk -F/ 'NF>1{print $1}' | sort -u | while IFS= read -r base; do
-    [[ "$base" == .* ]] && continue
-    case " ${NON_DIVISION_DIRS[*]} " in *" $base "*) continue ;; esac
-    echo "$base"
-  done
+  local base_dir="agents"
+  git ls-files "$base_dir/" | awk -F/ 'NF>2 && $2 !~ /^\./ {print $2}' | sort -u
 }
 
 # Contents of a bash AGENT_DIRS=( ... ) array in the given file, one per line.
@@ -140,9 +136,9 @@ has_agent_file() {
   return 1
 }
 while IFS= read -r div; do
-  if [[ ! -d "$div" ]]; then
-    fail "division '$div' has no directory on disk"
-  elif ! has_agent_file "$div"; then
+  if [[ ! -d "agents/$div" ]]; then
+    fail "division '$div' has no directory on disk (expected: agents/$div)"
+  elif ! has_agent_file "agents/$div"; then
     fail "division '$div' has no agent files (.md with '---' frontmatter) — not a real division"
   fi
 done < <(canonical)
