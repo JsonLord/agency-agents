@@ -1,0 +1,7 @@
+{"capabilities":[
+{"id":"research.web","scope":"read","approval":"none","providers":[{"id":"public-web","priority":10,"free":true,"available":true,"healthy":true,"auth_env":null,"fallback":null}]},
+{"id":"research.reddit","scope":"read","approval":"none","providers":[{"id":"reddit-public","priority":10,"free":true,"available":true,"healthy":true,"auth_env":null,"fallback":"research.web"}]},
+{"id":"research.linkedin","scope":"read","approval":"none","providers":[{"id":"linkedin-api","priority":20,"free":false,"available":true,"healthy":true,"auth_env":"LINKEDIN_API_KEY","fallback":"research.web"}]},
+{"id":"research.reality_check","scope":"read","approval":"none","providers":[{"id":"nodepad-evidence","priority":10,"free":true,"available":true,"healthy":true,"auth_env":null,"fallback":"research.web"}]},
+{"id":"artifact.generate","scope":"write","approval":"required","providers":[{"id":"local-template","priority":10,"free":true,"available":true,"healthy":true,"auth_env":null,"fallback":null}]}
+]}

@@ -16,33 +16,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Keep in sync with AGENT_DIRS in scripts/convert.sh
 AGENT_DIRS=(
-  academic
-  design
-  engineering
-  finance
-  game-development
-  gis
-  healthcare
-  marketing
-  paid-media
-  product
-  project-management
-  research
-  sales
-  security
-  spatial-computing
-  specialized
-  support
-  testing
-  discovery
-  intelligence
-  hypothesis
-  proposition
-  experimentation
-  distribution
-  production
-  evaluation
-  decision
+  discovery intelligence hypothesis proposition experimentation distribution production evaluation decision
 )
 
 REQUIRED_FRONTMATTER=("name" "description" "color")
@@ -254,10 +228,10 @@ if [[ $# -gt 0 ]]; then
   files=("$@")
 else
   for dir in "${AGENT_DIRS[@]}"; do
-    if [[ -d "$dir" ]]; then
+    if [[ -d "agents/$dir" ]]; then
       while IFS= read -r f; do
         files+=("$f")
-      done < <(find "$dir" -name "*.md" -type f | sort)
+      done < <(find "agents/$dir" -name "*.md" -type f | sort)
     fi
   done
 fi

@@ -1,0 +1,1571 @@
+[
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#F44336",
+    "description": "A specialist who recommends stopping validation efforts when evidence indicates insufficient viability or excessive risk.",
+    "division": "decision",
+    "emoji": "",
+    "id": "kill-agent",
+    "name": "Kill Agent",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit",
+      "assumption-mapping"
+    ],
+    "source": "agents/decision/kill-agent.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#E91E63",
+    "description": "A specialist who identifies and designs pivot strategies when venture hypotheses are invalidated.",
+    "division": "decision",
+    "emoji": "",
+    "id": "pivot-strategist",
+    "name": "Pivot Strategist",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "hypothesis-framing",
+      "assumption-mapping",
+      "experiment-design",
+      "evidence-audit"
+    ],
+    "source": "agents/decision/pivot-strategist.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FF5722",
+    "description": "A specialist who allocates resources across multiple ventures based on validation evidence and risk-return profiles.",
+    "division": "decision",
+    "emoji": "",
+    "id": "portfolio-allocator",
+    "name": "Portfolio Allocator",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit",
+      "assumption-mapping"
+    ],
+    "source": "agents/decision/portfolio-allocator.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#F44336",
+    "description": "A specialist who evaluates venture hypotheses and evidence to make informed go/kill/pivot decisions.",
+    "division": "decision",
+    "emoji": "",
+    "id": "venture-judge",
+    "name": "Venture Judge",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit",
+      "assumption-mapping"
+    ],
+    "source": "agents/decision/venture-judge.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#00BCD4",
+    "description": "A specialist who identifies and engages with communities where target customers congregate to understand shared problems and language.",
+    "division": "discovery",
+    "emoji": "",
+    "id": "community-scout",
+    "name": "Community Scout",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-interview",
+      "community-discovery"
+    ],
+    "source": "agents/discovery/community-scout.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who investigates customer problems, behaviors, and motivations through interviews and empathy.",
+    "division": "discovery",
+    "emoji": "",
+    "id": "customer-investigator",
+    "name": "Customer Investigator",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-interview",
+      "pain-mining",
+      "customer-language",
+      "jtbd"
+    ],
+    "source": "agents/discovery/customer-investigator.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who immerses in customer environments to observe and understand behaviors, cultures, and unspoken needs.",
+    "division": "discovery",
+    "emoji": "",
+    "id": "ethnographic-researcher",
+    "name": "Ethnographic Researcher",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-interview",
+      "jtbd",
+      "community-discovery"
+    ],
+    "source": "agents/discovery/ethnographic-researcher.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who identifies and articulates problems worth solving through observation, research, and curiosity-driven inquiry.",
+    "division": "discovery",
+    "emoji": "",
+    "id": "problem-explorer",
+    "name": "Problem Explorer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-interview",
+      "pain-mining"
+    ],
+    "source": "agents/discovery/problem-explorer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who identifies and analyzes emerging trends that could impact venture viability.",
+    "division": "discovery",
+    "emoji": "",
+    "id": "trend-scout",
+    "name": "Trend Scout",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "market-sizing",
+      "competitor-mapping"
+    ],
+    "source": "agents/discovery/trend-scout.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#00BCD4",
+    "description": "A specialist who researches and evaluates different channels for reaching and acquiring customers.",
+    "division": "distribution",
+    "emoji": "",
+    "id": "channel-researcher",
+    "name": "Channel Researcher",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "cac-modeling",
+      "experiment-design",
+      "value-proposition"
+    ],
+    "source": "agents/distribution/channel-researcher.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#009688",
+    "description": "A specialist who activates and engages communities to drive adoption and validation of ventures.",
+    "division": "distribution",
+    "emoji": "",
+    "id": "community-activation-specialist",
+    "name": "Community Activation Specialist",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "community-discovery",
+      "experiment-design",
+      "value-proposition"
+    ],
+    "source": "agents/distribution/community-activation-specialist.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFEB3B",
+    "description": "A specialist who designs and executes content-based experiments to test messaging, value propositions, and customer engagement.",
+    "division": "distribution",
+    "emoji": "",
+    "id": "content-experimenter",
+    "name": "Content Experimenter",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/distribution/content-experimenter.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#8E24AA",
+    "description": "A specialist who designs and executes experiments to test demand generation strategies and customer acquisition funnels.",
+    "division": "distribution",
+    "emoji": "",
+    "id": "demand-generation-tester",
+    "name": "Demand Generation Tester",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/distribution/demand-generation-tester.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#03A9F4",
+    "description": "A specialist who designs and executes outbound experiments (email, ads, direct outreach) to test customer acquisition and messaging.",
+    "division": "distribution",
+    "emoji": "",
+    "id": "outbound-experimenter",
+    "name": "Outbound Experimenter",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/distribution/outbound-experimenter.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#8E24AA",
+    "description": "A specialist who challenges demand assumptions and market hypotheses through adversarial analysis and evidence gathering.",
+    "division": "evaluation",
+    "emoji": "",
+    "id": "demand-skeptic",
+    "name": "Demand Skeptic",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit",
+      "assumption-mapping",
+      "offer-design"
+    ],
+    "source": "agents/evaluation/demand-skeptic.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#00BCD4",
+    "description": "A specialist who challenges distribution assumptions and channel hypotheses through adversarial analysis and evidence gathering.",
+    "division": "evaluation",
+    "emoji": "",
+    "id": "distribution-skeptic",
+    "name": "Distribution Skeptic",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "cac-modeling",
+      "evidence-audit",
+      "assumption-mapping"
+    ],
+    "source": "agents/evaluation/distribution-skeptic.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#607D8B",
+    "description": "A specialist who audits and evaluates evidence for validity, reliability, and relevance to venture hypotheses.",
+    "division": "evaluation",
+    "emoji": "",
+    "id": "evidence-auditor",
+    "name": "Evidence Auditor",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit"
+    ],
+    "source": "agents/evaluation/evidence-auditor.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#795548",
+    "description": "A specialist who challenges venture hypotheses and assumptions through adversarial analysis and critical thinking.",
+    "division": "evaluation",
+    "emoji": "",
+    "id": "red-team-analyst",
+    "name": "Red-Team Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "evidence-audit",
+      "assumption-mapping"
+    ],
+    "source": "agents/evaluation/red-team-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who challenges willingness-to-pay assumptions and pricing hypotheses through adversarial analysis and evidence gathering.",
+    "division": "evaluation",
+    "emoji": "",
+    "id": "wtp-skeptic",
+    "name": "WTP Skeptic",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "pricing-wtp",
+      "evidence-audit",
+      "assumption-mapping",
+      "offer-design"
+    ],
+    "source": "agents/evaluation/wtp-skeptic.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#4CAF50",
+    "description": "A specialist who designs and structures experiments to test venture hypotheses and assumptions.",
+    "division": "experimentation",
+    "emoji": "",
+    "id": "experiment-designer",
+    "name": "Experiment Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "assumption-mapping",
+      "hypothesis-framing",
+      "evidence-audit"
+    ],
+    "source": "agents/experimentation/experiment-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "experiment_spec",
+      "experiment_result"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#00C853",
+    "description": "A specialist who creates fake doors (landing pages, ads, or sign-ups) to test demand before building.",
+    "division": "experimentation",
+    "emoji": "",
+    "id": "fake-door-designer",
+    "name": "Fake-Door Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "offer-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/experimentation/fake-door-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "experiment_spec",
+      "experiment_result"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFEB3B",
+    "description": "A specialist who designs and tests messaging, positioning, and value propositions to validate resonance with target customers.",
+    "division": "experimentation",
+    "emoji": "",
+    "id": "message-test-designer",
+    "name": "Message-Test Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "positioning",
+      "customer-language"
+    ],
+    "source": "agents/experimentation/message-test-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "experiment_spec",
+      "experiment_result"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#8BC34A",
+    "description": "A specialist who creates minimal, fake versions of products to test core assumptions with minimal effort.",
+    "division": "experimentation",
+    "emoji": "",
+    "id": "pretotype-designer",
+    "name": "Pretotype Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "offer-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/experimentation/pretotype-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "experiment_spec",
+      "experiment_result"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who designs and tests pricing experiments to validate customer willingness to pay.",
+    "division": "experimentation",
+    "emoji": "",
+    "id": "pricing-test-designer",
+    "name": "Pricing-Test Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "offer-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/experimentation/pricing-test-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "experiment_spec",
+      "experiment_result"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#9C27B0",
+    "description": "A specialist who identifies and articulates the key assumptions underlying a venture hypothesis or business idea.",
+    "division": "hypothesis",
+    "emoji": "",
+    "id": "assumption-mapper",
+    "name": "Assumption Mapper",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "assumption-mapping",
+      "customer-interview"
+    ],
+    "source": "agents/hypothesis/assumption-mapper.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "hypothesis_proposal",
+      "counter_hypothesis"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#3F51B5",
+    "description": "A specialist who investigates cause-and-effect relationships to understand the mechanisms behind observed phenomena and hypotheses.",
+    "division": "hypothesis",
+    "emoji": "",
+    "id": "causal-analyst",
+    "name": "Causal Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "assumption-mapping"
+    ],
+    "source": "agents/hypothesis/causal-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "hypothesis_proposal",
+      "counter_hypothesis"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#F44336",
+    "description": "A specialist who develops alternative explanations and competing hypotheses to challenge assumptions and avoid confirmation bias.",
+    "division": "hypothesis",
+    "emoji": "",
+    "id": "counter-hypothesis-generator",
+    "name": "Counter-Hypothesis Generator",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "assumption-mapping"
+    ],
+    "source": "agents/hypothesis/counter-hypothesis-generator.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "hypothesis_proposal",
+      "counter_hypothesis"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#673AB7",
+    "description": "A specialist who crafts clear, testable venture hypotheses from problem insights and assumptions.",
+    "division": "hypothesis",
+    "emoji": "",
+    "id": "hypothesis-formulator",
+    "name": "Hypothesis Formulator",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "hypothesis-framing",
+      "assumption-mapping",
+      "jtbd",
+      "value-proposition"
+    ],
+    "source": "agents/hypothesis/hypothesis-formulator.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "hypothesis_proposal",
+      "counter_hypothesis"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#FFEB3B",
+    "description": "A specialist who identifies and synthesizes venture opportunities from problem insights, market trends, and emerging patterns.",
+    "division": "hypothesis",
+    "emoji": "",
+    "id": "opportunity-synthesizer",
+    "name": "Opportunity Synthesizer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "assumption-mapping",
+      "hypothesis-framing",
+      "market-sizing"
+    ],
+    "source": "agents/hypothesis/opportunity-synthesizer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap",
+      "hypothesis_proposal",
+      "counter_hypothesis"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#2196F3",
+    "description": "A specialist who gathers and analyzes data on competitors to understand their strengths, weaknesses, strategies, and market position.",
+    "division": "intelligence",
+    "emoji": "",
+    "id": "competitive-intelligence-analyst",
+    "name": "Competitive Intelligence Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "competitor-mapping",
+      "market-sizing"
+    ],
+    "source": "agents/intelligence/competitive-intelligence-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#3F51B5",
+    "description": "A specialist who designs and executes comprehensive research programs to gather evidence for venture validation.",
+    "division": "intelligence",
+    "emoji": "",
+    "id": "lead-researcher",
+    "name": "Lead Researcher",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-interview",
+      "experiment-design"
+    ],
+    "source": "agents/intelligence/lead-researcher.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#2196F3",
+    "description": "A specialist who gathers and analyzes market data to understand market size, growth, trends, and dynamics.",
+    "division": "intelligence",
+    "emoji": "",
+    "id": "market-intelligence-analyst",
+    "name": "Market Intelligence Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "market-sizing",
+      "competitor-mapping"
+    ],
+    "source": "agents/intelligence/market-intelligence-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#00C853",
+    "description": "A specialist who extracts insights from customer reviews, feedback, and testimonials to understand product-market fit and pain points.",
+    "division": "intelligence",
+    "emoji": "",
+    "id": "review-miner",
+    "name": "Review Miner",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "pain-mining"
+    ],
+    "source": "agents/intelligence/review-miner.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#E91E63",
+    "description": "A specialist who monitors weak signals, early indicators, and emerging patterns that may represent opportunities or threats.",
+    "division": "intelligence",
+    "emoji": "",
+    "id": "signal-analyst",
+    "name": "Signal Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "competitor-mapping"
+    ],
+    "source": "agents/intelligence/signal-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#4E342E",
+    "description": "A specialist who creates and tests written content (copy) to validate venture hypotheses and communicate value propositions.",
+    "division": "production",
+    "emoji": "",
+    "id": "copy-producer",
+    "name": "Copy Producer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/production/copy-producer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#5D4037",
+    "description": "A specialist who creates demonstrations and simulations to validate venture hypotheses and communicate value propositions.",
+    "division": "production",
+    "emoji": "",
+    "id": "demo-producer",
+    "name": "Demo Producer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/production/demo-producer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#8D6E63",
+    "description": "A specialist who creates and tests landing pages to validate venture hypotheses and value propositions.",
+    "division": "production",
+    "emoji": "",
+    "id": "landing-page-builder",
+    "name": "Landing Page Builder",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/production/landing-page-builder.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#795548",
+    "description": "A specialist who oversees the creation of prototypes to validate venture hypotheses and assumptions.",
+    "division": "production",
+    "emoji": "",
+    "id": "prototype-director",
+    "name": "Prototype Director",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "offer-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/production/prototype-director.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#6D4C41",
+    "description": "A specialist who creates visual assets (images, graphics, videos) to validate venture hypotheses and communicate value propositions.",
+    "division": "production",
+    "emoji": "",
+    "id": "visual-creative",
+    "name": "Visual Creative",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "experiment-design",
+      "value-proposition",
+      "evidence-audit"
+    ],
+    "source": "agents/production/visual-creative.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFEB3B",
+    "description": "A specialist who analyzes and extracts customer language, terminology, and phrasing to improve communication and validation.",
+    "division": "proposition",
+    "emoji": "",
+    "id": "customer-language-analyst",
+    "name": "Customer Language Analyst",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "customer-language",
+      "customer-interview"
+    ],
+    "source": "agents/proposition/customer-language-analyst.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FF6F00",
+    "description": "A specialist who designs and tests complete offers that combine product, pricing, and positioning for market validation.",
+    "division": "proposition",
+    "emoji": "",
+    "id": "offer-designer",
+    "name": "Offer Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "offer-design",
+      "value-proposition",
+      "pricing-wtp",
+      "positioning",
+      "experiment-design"
+    ],
+    "source": "agents/proposition/offer-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#FF5722",
+    "description": "A specialist who defines how a venture should be positioned in the minds of target customers relative to alternatives.",
+    "division": "proposition",
+    "emoji": "",
+    "id": "positioning-strategist",
+    "name": "Positioning Strategist",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "positioning",
+      "customer-language",
+      "value-proposition",
+      "assumption-mapping"
+    ],
+    "source": "agents/proposition/positioning-strategist.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit"
+    ],
+    "color": "#FFC107",
+    "description": "A specialist who researches and tests pricing strategies to determine optimal pricing for ventures.",
+    "division": "proposition",
+    "emoji": "",
+    "id": "pricing-strategist",
+    "name": "Pricing Strategist",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "pricing-wtp",
+      "value-proposition",
+      "customer-language",
+      "assumption-mapping"
+    ],
+    "source": "agents/proposition/pricing-strategist.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "research.web",
+      "research.reddit",
+      "research.linkedin"
+    ],
+    "color": "#FF9800",
+    "description": "A specialist who crafts and tests value propositions that connect customer problems with solution benefits.",
+    "division": "proposition",
+    "emoji": "",
+    "id": "value-position-designer",
+    "name": "Value Proposition Designer",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "skills": [
+      "value-proposition",
+      "customer-language",
+      "positioning",
+      "jtbd",
+      "assumption-mapping"
+    ],
+    "source": "agents/proposition/value-position-designer.md",
+    "vibe": "evidence-led",
+    "writes": [
+      "evidence_submission",
+      "research_gap"
+    ]
+  }
+]

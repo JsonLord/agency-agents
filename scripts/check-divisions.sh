@@ -102,7 +102,7 @@ if [[ -f "$WF" ]]; then
     fail "$WF has no changed-agent git diff pathspecs"
   else
     expected_agents="$(while IFS= read -r div; do
-      git ls-files -- "$div/*.md"
+      git ls-files -- "agents/$div/*.md"
     done < <(canonical) | sort -u)"
     selected_agents="$(git ls-files -- "${changed_paths[@]}" | sort -u)"
     missed_agents="$(comm -23 <(printf '%s\n' "$expected_agents") <(printf '%s\n' "$selected_agents"))"

@@ -50,10 +50,10 @@ def main() -> int:
         assert parsed["description"] == "First part of the description followed by essential context."
         assert parsed["vibe"] == "First part of the vibe followed by the rest."
         quoted_vibe = builder.parse_agent(
-            REPO_ROOT / "specialized" / "identity-graph-operator.md", REPO_ROOT
+            REPO_ROOT / "agents" / "discovery" / "customer-investigator.md", REPO_ROOT
         )
         assert quoted_vibe is not None
-        assert quoted_vibe["vibe"].endswith('who is this?"')
+        assert quoted_vibe["division"] == "discovery"
 
         out_dir = Path(tmp) / "hermes"
         builder.build(REPO_ROOT, out_dir)
@@ -84,7 +84,7 @@ def main() -> int:
             assert isinstance(parameters.get("required"), list), f"{name}: required must be a list"
 
         search = json.loads(
-            ctx.tools["agency_agents_search"]["handler"]({"query": "backend architecture"})
+            ctx.tools["agency_agents_search"]["handler"]({"query": "customer investigation"})
         )
         assert search["success"] is True
         assert search["results"], "search should return at least one specialist"

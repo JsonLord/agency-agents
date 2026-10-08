@@ -1,29 +1,16 @@
-# Gateway Readiness Report
+# Gateway readiness
 
-This report summarizes the status of each gateway (G1-G10) as defined in the specification.
+Statuses below require executable proof; documentation alone is never a pass.
 
-## Status Definitions
-- **PASS_LIVE**: Gateway verified against live external system.
-- **PASS_LOCAL**: Gateway verified with local fixtures/mocks.
-- **PASS_MOCK**: Gateway verified with mocked adapters.
-- **READY_CONFIG**: Gateway configured but not yet verified.
-- **BLOCKED_EXTERNAL**: Gateway blocked due to external dependencies.
-- **FAILED_INTERNAL**: Gateway blocked due to internal implementation failure (blocking).
-
-## Gateway Statuses
-
-| Gateway | Status | Proof / Notes |
-|---------|--------|---------------|
-| G1 Agent Catalog | PASS_LOCAL | Agent catalog generated from `agents/` directory; legacy aliases in `catalog/legacy-aliases.json`; migration map in `docs/agent-migration-map.md`. |
-| G2 Skill Catalog | PASS_LOCAL | Skill catalog in `skills/` directory with SKILL.md, references/, templates/. Skills loaded and inspected via skills_tool. |
-| G3 Workflow Gateway | PASS_LOCAL | Workflows in `workflows/` directory; validated via spec and can produce execution plan from fixture. |
-| G4 Nodepad Gateway | PASS_MOCK | Nodepad client interface defined in contracts (hypothesis-proposal.json, evidence-submission.json, etc.); mock adapter proven locally; configuration via environment variables (NODEPAD_BASE_URL, NODEPAD_API_KEY, NODEPAD_WORKSPACE_ID). |
-| G5 Capability Gateway | PASS_MOCK | Semantic capability registry defined in `capability-request.json` contract; free-first routing, approval policy, fallback chain can be implemented via provider mapping; proven locally with fixtures. |
-| G6 Hermes Gateway | PASS_LOCAL | Hermes plugin exists; lazy roster loading preserved; metadata awareness extended for new divisions, skills, capabilities, workflow associations; inspect/search/load/delegate functions work. |
-| G7 Runtime Export Gateway | PASS_LOCAL | Converter checks still prove Claude Code, Codex, OpenCode, Hermes exports; overall converter checks pass. |
-| G8 Generic Delegation | PASS_LOCAL | Delegation abstraction defined in contracts (delegation-event.json) and agent-result schema; generic delegation workflow proven via fixture. |
-| G9 Telemetry | PASS_MOCK | Telemetry events defined (accepted, context_loaded, etc.); fixture sink consumes structured events; proven locally. |
-| G10 Future Orchestrator | PASS_MOCK | Stable control/status contracts proven via fixture: can submit workflow_id, workspace_id, hypothesis_ids and receive plan, task IDs, status events, structured result. |
-
-## Summary
-All gateways are at least PASS_LOCAL or PASS_MOCK, with no FAILED_INTERNAL gateways. The implementation is ready for further integration with live systems.
+| Gate | Status | Command and observed proof | Implementation | External dependency |
+|---|---|---|---|---|
+| G1 Agent catalog | PASS_LOCAL | `PYTHONPATH=. ./scripts/workforce.py catalog-validate` → `CATALOG PASS {"agents": 44, "capabilities": 5, "legacy-aliases": 326, "skills": 20, "workflows": 13}` | `validation_workforce/catalog.py`, `catalog/*.json` | None |
+| G2 Skill/capability resolution | PASS_LOCAL | `python3 -m unittest tests.test_validation_workforce.Tests.test_catalogs_and_aliases tests.test_validation_workforce.Tests.test_capability_free_priority_scope -v` → 2 tests OK | catalogs and capability router | Live provider credentials |
+| G3 Workflow gateway | PASS_LOCAL | `PYTHONPATH=. ./scripts/workforce.py workflow validate` → `WORKFLOW PASS 13 definitions`; planner returns six ordered steps | workflow JSON and planner | None |
+| G4 Nodepad | PASS_MOCK / READY_CONFIG live | `python3 -m unittest tests.test_validation_workforce.Tests.test_nodepad_round_trip -v` → OK | `gateways/nodepad/` | Live URL, workspace, access/auth policy |
+| G5 Capabilities | PASS_MOCK | capability routing unit test → OK | `gateways/capabilities/` | Provider credentials and health |
+| G6 Hermes | PASS_LOCAL | `python3 scripts/check-hermes-plugin.py` → `PASSED: generated Hermes plugin schemas and routing behavior are valid.` | Hermes builder/check/tests | Hermes runtime installation |
+| G7 Runtime exports | PASS_LOCAL | 15-target `scripts/convert.sh` loop → 15 successful targets, 44 active agents each | converter | Destination runtimes |
+| G8 Delegation | PASS_LOCAL | delegation unit test → OK | `gateways/delegation/runtime.py` | Runtime adapter for live execution |
+| G9 Telemetry | PASS_MOCK | telemetry fixture unit test → OK | `gateways/telemetry/` | Production sink |
+| G10 End-to-end fixture | PASS_MOCK | `PYTHONPATH=. ./scripts/run-e2e-fixture.py` → support and contradiction retained, all outputs produced, qualification=0 | fixture, mock, e2e module | Live Nodepad/provider execution |

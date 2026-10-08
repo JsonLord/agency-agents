@@ -1,0 +1,142 @@
+[
+  {
+    "description": "A reusable skill for identifying, categorizing, and prioritizing assumptions underlying venture hypotheses.",
+    "id": "assumption-mapping",
+    "name": "assumption-mapping",
+    "source": "skills/assumption-mapping/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for modeling and optimizing customer acquisition costs to ensure profitable and scalable growth.",
+    "id": "cac-modeling",
+    "name": "cac-modeling",
+    "source": "skills/cac-modeling/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for discovering and understanding communities relevant to a venture, including their structures, languages, and gathering places.",
+    "id": "community-discovery",
+    "name": "community-discovery",
+    "source": "skills/community-discovery/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for systematically analyzing competitors to understand their strengths, weaknesses, strategies, and market positioning.",
+    "id": "competitor-mapping",
+    "name": "competitor-mapping",
+    "source": "skills/competitor-mapping/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for conducting effective customer interviews to uncover pains, needs, and behaviors.",
+    "id": "customer-interview",
+    "name": "customer-interview",
+    "source": "skills/customer-interview/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for capturing, organizing, and using the exact words and phrases customers use to describe their problems, needs, and solutions.",
+    "id": "customer-language",
+    "name": "customer-language",
+    "source": "skills/customer-language/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for analyzing and evaluating different channels for reaching and acquiring customers.",
+    "id": "distribution-analysis",
+    "name": "distribution-analysis",
+    "source": "skills/distribution-analysis/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for auditing and evaluating evidence for validity, reliability, and relevance to venture hypotheses.",
+    "id": "evidence-audit",
+    "name": "evidence-audit",
+    "source": "skills/evidence-audit/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for designing and structuring experiments to test venture hypotheses and assumptions.",
+    "id": "experiment-design",
+    "name": "experiment-design",
+    "source": "skills/experiment-design/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for crafting clear, testable venture hypotheses from problem insights and assumptions.",
+    "id": "hypothesis-framing",
+    "name": "hypothesis-framing",
+    "source": "skills/hypothesis-framing/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for understanding the jobs customers are trying to get done and the circumstances in which they hire products or services.",
+    "id": "jtbd",
+    "name": "jtbd",
+    "source": "skills/jtbd/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for estimating the size of a venture's target market using top-down, bottom-up, and value-theory approaches.",
+    "id": "market-sizing",
+    "name": "market-sizing",
+    "source": "skills/market-sizing/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for designing and testing complete offers that combine product, pricing, and positioning for market validation.",
+    "id": "offer-design",
+    "name": "offer-design",
+    "source": "skills/offer-design/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for systematically uncovering and analyzing customer pains, problems, and frustrations.",
+    "id": "pain-mining",
+    "name": "pain-mining",
+    "source": "skills/pain-mining/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for defining how a venture should be positioned in the minds of target customers relative to alternatives.",
+    "id": "positioning",
+    "name": "positioning",
+    "source": "skills/positioning/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for researching and testing pricing strategies to determine optimal pricing for ventures.",
+    "id": "pricing-wtp",
+    "name": "pricing-wtp",
+    "source": "skills/pricing-wtp/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for analyzing and improving customer retention and reducing churn.",
+    "id": "retention-analysis",
+    "name": "retention-analysis",
+    "source": "skills/retention-analysis/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for identifying and analyzing substitute solutions that customers might use instead of the venture's proposed solution.",
+    "id": "substitute-analysis",
+    "name": "substitute-analysis",
+    "source": "skills/substitute-analysis/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for analyzing the direct revenues and costs associated with a single unit of a venture's product or service.",
+    "id": "unit-economics",
+    "name": "unit-economics",
+    "source": "skills/unit-economics/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "A reusable skill for crafting and testing value propositions that connect customer problems with solution benefits.",
+    "id": "value-proposition",
+    "name": "value-proposition",
+    "source": "skills/value-proposition/SKILL.md",
+    "version": "1.0.0"
+  }
+]

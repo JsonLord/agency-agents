@@ -1,0 +1,45 @@
+{
+  "id": "investigate-hypothesis",
+  "version": "1.0.0",
+  "objective": "Investigate a specific hypothesis to gather evidence for or against it.",
+  "inputs": {
+    "hypothesis": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "agent_id": "hypothesis-formulator",
+      "skill_ids": [
+        "hypothesis-framing"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "hypothesis-formulator-result"
+      ],
+      "capabilities": [
+        "research.web"
+      ]
+    },
+    {
+      "id": "step-2",
+      "agent_id": "evidence-auditor",
+      "skill_ids": [
+        "evidence-audit"
+      ],
+      "depends_on": [
+        "step-1"
+      ],
+      "expected_outputs": [
+        "evidence-auditor-result"
+      ],
+      "capabilities": []
+    }
+  ],
+  "expected_outputs": [
+    "agent-results",
+    "evidence-led-recommendation"
+  ]
+}

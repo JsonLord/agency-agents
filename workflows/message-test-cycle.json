@@ -1,0 +1,45 @@
+{
+  "id": "message-test-cycle",
+  "version": "1.0.0",
+  "objective": "Test marketing messages to find the most effective communication.",
+  "inputs": {
+    "hypothesis": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "agent_id": "customer-investigator",
+      "skill_ids": [
+        "customer-interview"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "customer-investigator-result"
+      ],
+      "capabilities": [
+        "research.web"
+      ]
+    },
+    {
+      "id": "step-2",
+      "agent_id": "evidence-auditor",
+      "skill_ids": [
+        "evidence-audit"
+      ],
+      "depends_on": [
+        "step-1"
+      ],
+      "expected_outputs": [
+        "evidence-auditor-result"
+      ],
+      "capabilities": []
+    }
+  ],
+  "expected_outputs": [
+    "agent-results",
+    "evidence-led-recommendation"
+  ]
+}

@@ -77,8 +77,6 @@ TODAY="$(date +%Y-%m-%d)"
 . "$SCRIPT_DIR/lib.sh"
 
 AGENT_DIRS=(
-  academic design engineering finance game-development gis healthcare marketing paid-media product project-management
-  research sales security spatial-computing specialized support testing \
   discovery intelligence hypothesis proposition experimentation distribution production evaluation decision
 )
 
@@ -764,7 +762,7 @@ check_agent_slug_collisions() {
   local seen_slugs=() seen_files=()
   local collisions=0
   for dir in "${AGENT_DIRS[@]}"; do
-    dirpath="$REPO_ROOT/$dir"
+    dirpath="$REPO_ROOT/agents/$dir"
     [[ -d "$dirpath" ]] || continue
     while IFS= read -r -d '' file; do
       is_agent_file "$file" || continue
@@ -780,7 +778,7 @@ check_agent_slug_collisions() {
       done
       seen_slugs+=("$slug")
       seen_files+=("$relative")
-    done < <(find "$dirpath" -name "*.md" -type f -print0)
+    done < <(find "$dirpath" -name "*.md" ! -name "README.md" -type f -print0)
   done
   (( collisions == 0 ))
 }
@@ -798,7 +796,7 @@ run_conversions() {
   clean_tool_output "$tool" || return 1
 
   for dir in "${AGENT_DIRS[@]}"; do
-    local dirpath="$REPO_ROOT/$dir"
+    local dirpath="$REPO_ROOT/agents/$dir"
     [[ -d "$dirpath" ]] || continue
 
     while IFS= read -r -d '' file; do
@@ -829,7 +827,7 @@ run_conversions() {
       esac
 
       (( count++ )) || true
-    done < <(find "$dirpath" -name "*.md" -type f -print0 | sort -z)
+    done < <(find "$dirpath" -name "*.md" ! -name "README.md" -type f -print0 | sort -z)
   done
 
   echo "$count"

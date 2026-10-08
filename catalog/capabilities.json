@@ -1,0 +1,82 @@
+[
+  {
+    "approval": "none",
+    "id": "research.web",
+    "providers": [
+      {
+        "auth_env": null,
+        "available": true,
+        "fallback": null,
+        "free": true,
+        "healthy": true,
+        "id": "public-web",
+        "priority": 10
+      }
+    ],
+    "scope": "read"
+  },
+  {
+    "approval": "none",
+    "id": "research.reddit",
+    "providers": [
+      {
+        "auth_env": null,
+        "available": true,
+        "fallback": "research.web",
+        "free": true,
+        "healthy": true,
+        "id": "reddit-public",
+        "priority": 10
+      }
+    ],
+    "scope": "read"
+  },
+  {
+    "approval": "none",
+    "id": "research.linkedin",
+    "providers": [
+      {
+        "auth_env": "LINKEDIN_API_KEY",
+        "available": true,
+        "fallback": "research.web",
+        "free": false,
+        "healthy": true,
+        "id": "linkedin-api",
+        "priority": 20
+      }
+    ],
+    "scope": "read"
+  },
+  {
+    "approval": "none",
+    "id": "research.reality_check",
+    "providers": [
+      {
+        "auth_env": null,
+        "available": true,
+        "fallback": "research.web",
+        "free": true,
+        "healthy": true,
+        "id": "nodepad-evidence",
+        "priority": 10
+      }
+    ],
+    "scope": "read"
+  },
+  {
+    "approval": "required",
+    "id": "artifact.generate",
+    "providers": [
+      {
+        "auth_env": null,
+        "available": true,
+        "fallback": null,
+        "free": true,
+        "healthy": true,
+        "id": "local-template",
+        "priority": 10
+      }
+    ],
+    "scope": "write"
+  }
+]

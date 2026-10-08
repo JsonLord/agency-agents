@@ -1,0 +1,45 @@
+{
+  "id": "competitor-pain-mining",
+  "version": "1.0.0",
+  "objective": "Mine competitor reviews and feedback to uncover customer pain points.",
+  "inputs": {
+    "hypothesis": {
+      "type": "string",
+      "required": false
+    }
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "agent_id": "problem-explorer",
+      "skill_ids": [
+        "pain-mining"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "problem-explorer-result"
+      ],
+      "capabilities": [
+        "research.web"
+      ]
+    },
+    {
+      "id": "step-2",
+      "agent_id": "evidence-auditor",
+      "skill_ids": [
+        "evidence-audit"
+      ],
+      "depends_on": [
+        "step-1"
+      ],
+      "expected_outputs": [
+        "evidence-auditor-result"
+      ],
+      "capabilities": []
+    }
+  ],
+  "expected_outputs": [
+    "agent-results",
+    "evidence-led-recommendation"
+  ]
+}

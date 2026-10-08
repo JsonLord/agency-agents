@@ -1,0 +1,101 @@
+{
+  "id": "validate-idea",
+  "version": "1.0.0",
+  "objective": "Validate that a problem worth solving exists and that customers are willing to pay for a solution.",
+  "inputs": {
+    "hypothesis": {
+      "type": "string",
+      "required": true
+    }
+  },
+  "steps": [
+    {
+      "id": "step-1",
+      "agent_id": "problem-explorer",
+      "skill_ids": [
+        "pain-mining"
+      ],
+      "depends_on": [],
+      "expected_outputs": [
+        "problem-explorer-result"
+      ],
+      "capabilities": [
+        "research.web"
+      ]
+    },
+    {
+      "id": "step-2",
+      "agent_id": "customer-investigator",
+      "skill_ids": [
+        "customer-interview"
+      ],
+      "depends_on": [
+        "step-1"
+      ],
+      "expected_outputs": [
+        "customer-investigator-result"
+      ],
+      "capabilities": []
+    },
+    {
+      "id": "step-3",
+      "agent_id": "hypothesis-formulator",
+      "skill_ids": [
+        "hypothesis-framing"
+      ],
+      "depends_on": [
+        "step-2"
+      ],
+      "expected_outputs": [
+        "hypothesis-formulator-result"
+      ],
+      "capabilities": []
+    },
+    {
+      "id": "step-4",
+      "agent_id": "counter-hypothesis-generator",
+      "skill_ids": [
+        "hypothesis-framing"
+      ],
+      "depends_on": [
+        "step-3"
+      ],
+      "expected_outputs": [
+        "counter-hypothesis-generator-result"
+      ],
+      "capabilities": []
+    },
+    {
+      "id": "step-5",
+      "agent_id": "experiment-designer",
+      "skill_ids": [
+        "experiment-design"
+      ],
+      "depends_on": [
+        "step-4"
+      ],
+      "expected_outputs": [
+        "experiment-designer-result"
+      ],
+      "capabilities": []
+    },
+    {
+      "id": "step-6",
+      "agent_id": "evidence-auditor",
+      "skill_ids": [
+        "evidence-audit"
+      ],
+      "depends_on": [
+        "step-5"
+      ],
+      "expected_outputs": [
+        "evidence-auditor-result"
+      ],
+      "capabilities": []
+    }
+  ],
+  "expected_outputs": [
+    "agent-results",
+    "evidence-led-recommendation"
+  ]
+}

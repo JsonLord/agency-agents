@@ -64,7 +64,11 @@ def parse_agent(path: Path, repo_root: Path) -> dict[str, str] | None:
     if not name:
         return None
     rel = path.relative_to(repo_root)
-    division = rel.parts[0]
+    try:
+        agent_rel = path.relative_to(repo_root / "agents")
+        division = agent_rel.parts[0]
+    except ValueError:  # isolated parser fixtures retain the historical layout
+        division = rel.parts[0]
     return {
         "slug": slugify(name),
         "name": name,
@@ -81,10 +85,12 @@ def parse_agent(path: Path, repo_root: Path) -> dict[str, str] | None:
 def collect_agents(repo_root: Path) -> list[dict[str, str]]:
     agents: list[dict[str, str]] = []
     for dirname in division_dirs(repo_root):
-        base = repo_root / dirname
+        base = repo_root / "agents" / dirname
         if not base.is_dir():
             continue
-        for path in sorted(base.rglob("*.md")):
+        for path in sorted(base.glob("*.md")):
+            if path.name == "README.md":
+                continue
             parsed = parse_agent(path, repo_root)
             if parsed:
                 agents.append(parsed)

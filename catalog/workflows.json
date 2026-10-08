@@ -1,0 +1,643 @@
+[
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "competitor-pain-mining",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Mine competitor reviews and feedback to uncover customer pain points.",
+    "steps": [
+      {
+        "agent_id": "problem-explorer",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "problem-explorer-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "pain-mining"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "customer-discovery-cycle",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Continuously discover and validate customer problems and solutions.",
+    "steps": [
+      {
+        "agent_id": "problem-explorer",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "problem-explorer-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "pain-mining"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "disconfirm-hypothesis",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Actively try to disconfirm a hypothesis to avoid confirmation bias.",
+    "steps": [
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "fake-door-cycle",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Test demand for a solution before building it using a fake door test.",
+    "steps": [
+      {
+        "agent_id": "counter-hypothesis-generator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "counter-hypothesis-generator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "investigate-hypothesis",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Investigate a specific hypothesis to gather evidence for or against it.",
+    "steps": [
+      {
+        "agent_id": "hypothesis-formulator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "hypothesis-formulator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "message-test-cycle",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Test marketing messages to find the most effective communication.",
+    "steps": [
+      {
+        "agent_id": "customer-investigator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "customer-investigator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "customer-interview"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "pivot-cycle",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Execute a pivot based on validated learning.",
+    "steps": [
+      {
+        "agent_id": "customer-investigator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "customer-investigator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "customer-interview"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "portfolio-review",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Review a portfolio of ventures to allocate resources and make strategic decisions.",
+    "steps": [
+      {
+        "agent_id": "customer-investigator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "customer-investigator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "customer-interview"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "validate-channel",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Validate that a customer acquisition channel is effective and efficient.",
+    "steps": [
+      {
+        "agent_id": "hypothesis-formulator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "hypothesis-formulator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "validate-idea",
+    "inputs": {
+      "hypothesis": {
+        "required": true,
+        "type": "string"
+      }
+    },
+    "objective": "Validate that a problem worth solving exists and that customers are willing to pay for a solution.",
+    "steps": [
+      {
+        "agent_id": "problem-explorer",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "problem-explorer-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "pain-mining"
+        ]
+      },
+      {
+        "agent_id": "customer-investigator",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "customer-investigator-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "customer-interview"
+        ]
+      },
+      {
+        "agent_id": "hypothesis-formulator",
+        "capabilities": [],
+        "depends_on": [
+          "step-2"
+        ],
+        "expected_outputs": [
+          "hypothesis-formulator-result"
+        ],
+        "id": "step-3",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "counter-hypothesis-generator",
+        "capabilities": [],
+        "depends_on": [
+          "step-3"
+        ],
+        "expected_outputs": [
+          "counter-hypothesis-generator-result"
+        ],
+        "id": "step-4",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "experiment-designer",
+        "capabilities": [],
+        "depends_on": [
+          "step-4"
+        ],
+        "expected_outputs": [
+          "experiment-designer-result"
+        ],
+        "id": "step-5",
+        "skill_ids": [
+          "experiment-design"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-5"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-6",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "validate-pricing",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Validate that customers are willing to pay the proposed price.",
+    "steps": [
+      {
+        "agent_id": "counter-hypothesis-generator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "counter-hypothesis-generator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "validate-problem",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Validate that a real problem exists that customers care about.",
+    "steps": [
+      {
+        "agent_id": "hypothesis-formulator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "hypothesis-formulator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "hypothesis-framing"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  },
+  {
+    "expected_outputs": [
+      "agent-results",
+      "evidence-led-recommendation"
+    ],
+    "id": "validate-value-proposition",
+    "inputs": {
+      "hypothesis": {
+        "required": false,
+        "type": "string"
+      }
+    },
+    "objective": "Validate that the proposed value proposition resonates with target customers.",
+    "steps": [
+      {
+        "agent_id": "customer-investigator",
+        "capabilities": [
+          "research.web"
+        ],
+        "depends_on": [],
+        "expected_outputs": [
+          "customer-investigator-result"
+        ],
+        "id": "step-1",
+        "skill_ids": [
+          "customer-interview"
+        ]
+      },
+      {
+        "agent_id": "evidence-auditor",
+        "capabilities": [],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "evidence-auditor-result"
+        ],
+        "id": "step-2",
+        "skill_ids": [
+          "evidence-audit"
+        ]
+      }
+    ],
+    "version": "1.0.0"
+  }
+]

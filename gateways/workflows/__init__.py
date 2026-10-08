@@ -1,0 +1,1 @@
+"""Validation workforce gateway."""
