@@ -170,7 +170,12 @@ _ROSTER_INDEX=""         # "<install slug>\t<file stem>" per agent; see roster_i
 
 # division_files <division> — agent file paths (frontmatter only) in a division.
 division_files() {
-  local d="$REPO_ROOT/$1" f
+  local d f
+  if [[ "$1" == "strategy" ]]; then
+    d="$REPO_ROOT/strategy"
+  else
+    d="$REPO_ROOT/agents/$1"
+  fi
   [[ -d "$d" ]] || return 0
   while IFS= read -r -d '' f; do
     is_agent_file "$f" && printf '%s\n' "$f"
@@ -864,12 +869,13 @@ install_claude_code() {
   local count=0 dir f slug
   mkdir -p "$dest"
   for dir in "${AGENT_DIRS[@]}"; do
-    [[ -d "$REPO_ROOT/$dir" ]] || continue
+    local d; if [[ "$dir" == "strategy" ]]; then d="$REPO_ROOT/strategy"; else d="$REPO_ROOT/agents/$dir"; fi
+    [[ -d "$d" ]] || continue
     while IFS= read -r -d '' f; do
       is_agent_file "$f" || continue
       slug="$(agent_slug "$f")"; slug_allowed "$slug" || continue
       install_file "$f" "$dest/"; incr count
-    done < <(find "$REPO_ROOT/$dir" -name "*.md" -type f -print0)
+    done < <(find "$d" -name "*.md" -type f -print0)
   done
   ok "Claude Code: $count agents -> $dest"
 }
@@ -886,14 +892,15 @@ install_copilot() {
   mkdir -p "$dest_github"
   [[ -n "$dest_copilot" ]] && mkdir -p "$dest_copilot"
   for dir in "${AGENT_DIRS[@]}"; do
-    [[ -d "$REPO_ROOT/$dir" ]] || continue
+    local d; if [[ "$dir" == "strategy" ]]; then d="$REPO_ROOT/strategy"; else d="$REPO_ROOT/agents/$dir"; fi
+    [[ -d "$d" ]] || continue
     while IFS= read -r -d '' f; do
       is_agent_file "$f" || continue
       slug="$(agent_slug "$f")"; slug_allowed "$slug" || continue
       install_file "$f" "$dest_github/"
       [[ -n "$dest_copilot" ]] && install_file "$f" "$dest_copilot/"
       incr count
-    done < <(find "$REPO_ROOT/$dir" -name "*.md" -type f -print0)
+    done < <(find "$d" -name "*.md" -type f -print0)
   done
   ok "Copilot: $count agents -> $dest_github"
   [[ -n "$dest_copilot" ]] && ok "Copilot: $count agents -> $dest_copilot"

@@ -90,33 +90,38 @@ count_md() {
 # ---------------------------------------------------------------------------
 divisions_from_json() {
   awk '/"divisions"[[:space:]]*:[[:space:]]*\{/{f=1; next} f' "$REPO_ROOT/divisions.json" \
-    | grep -oE '^[[:space:]]*"[a-z0-9-]+"[[:space:]]*:' \
-    | sed -E 's/[[:space:]]*"([a-z0-9-]+)"[[:space:]]*:/\1/'
+    | grep -oE '"[a-z0-9-]+"[[:space:]]*:[[:space:]]*\{' \
+    | sed -E 's/"([a-z0-9-]+)".*/\1/'
 }
 
 ALL_DIVISIONS=()
 while IFS= read -r _d; do [[ -n "$_d" ]] && ALL_DIVISIONS+=("$_d"); done < <(divisions_from_json)
 
 agent_files_in() {
-  local d="$REPO_ROOT/$1" f
+  local d f
+  if [[ "$1" == "strategy" ]]; then
+    d="$REPO_ROOT/strategy"
+  else
+    d="$REPO_ROOT/agents/$1"
+  fi
   [[ -d "$d" ]] || return 0
   while IFS= read -r f; do is_agent_file "$f" && printf '%s\n' "$f"; done \
     < <(find "$d" -name "*.md" -type f | sort)
 }
 
 TOTAL_AGENTS=0
-for _div in "${ALL_DIVISIONS[@]}"; do
+for _div in "${ALL_DIVISIONS[@]}" strategy; do
   TOTAL_AGENTS=$(( TOTAL_AGENTS + $(agent_files_in "$_div" | wc -l | tr -d ' ') ))
 done
-ENG_AGENTS=$(agent_files_in engineering | wc -l | tr -d ' ')
+ENG_AGENTS=$(agent_files_in production | wc -l | tr -d ' ')
 # `awk NR==1` rather than `head -1`: head exits at the first line and the
 # still-writing function dies on SIGPIPE, which prints a spurious error.
-FIRST_ENG_FILE="$(agent_files_in engineering | awk 'NR==1')"
+FIRST_ENG_FILE="$(agent_files_in production | awk 'NR==1')"
 FIRST_ENG_SLUG="$(agent_slug "$FIRST_ENG_FILE")"
 
 echo "Testing $INSTALL"
 echo "  repo: $REPO_ROOT"
-echo "  ${#ALL_DIVISIONS[@]} divisions, $TOTAL_AGENTS agents (engineering: $ENG_AGENTS)"
+echo "  ${#ALL_DIVISIONS[@]} divisions, $TOTAL_AGENTS agents (production: $ENG_AGENTS)"
 echo ""
 
 # ---------------------------------------------------------------------------
@@ -345,7 +350,7 @@ assert_eq 0 "$(count_md "$dest")" "a refused install writes nothing"
 # qwen with one of those used to report two successful installs while qwen's
 # file replaced Claude Code's. The refusal comes before any conversion, so this
 # stays cheap too.
-slug_named="$(for f in "$REPO_ROOT"/game-development/*.md; do
+slug_named="$(for f in "$REPO_ROOT"/agents/production/*.md; do
   is_agent_file "$f" && [[ "$(basename "$f" .md)" == "$(agent_slug "$f")" ]] && { agent_slug "$f"; break; }
 done)"
 home="$(sandbox path-collision-slug-named)"
@@ -391,7 +396,7 @@ echo "selection"
 
 home="$(sandbox division)"
 dest="$home/dest"
-run_install "$home" --tool claude-code --division engineering --path "$dest"
+run_install "$home" --tool claude-code --division production --path "$dest"
 assert_eq "$ENG_AGENTS" "$(count_md "$dest")" "--division installs only that division"
 
 home="$(sandbox agent)"
@@ -419,15 +424,15 @@ echo "link + repeat runs"
 
 home="$(sandbox link)"
 dest="$home/dest"
-run_install "$home" --tool claude-code --link --division engineering --path "$dest"
+run_install "$home" --tool claude-code --link --division production --path "$dest"
 links=$(find "$dest" -maxdepth 1 -type l | wc -l | tr -d ' ')
 assert_eq "$ENG_AGENTS" "$links" "--link creates symlinks, not copies"
 
 home="$(sandbox idempotent)"
 dest="$home/dest"
-run_install "$home" --tool claude-code --division engineering --path "$dest"
+run_install "$home" --tool claude-code --division production --path "$dest"
 first=$(count_md "$dest")
-run_install "$home" --tool claude-code --division engineering --path "$dest"
+run_install "$home" --tool claude-code --division production --path "$dest"
 assert_eq "$first" "$(count_md "$dest")" "re-running installs the same set, not duplicates"
 
 # A project-owned symlink with an agent's filename must not redirect a copy
@@ -437,7 +442,7 @@ dest="$home/dest"
 mkdir -p "$dest"
 printf 'KEEP THIS FILE\n' > "$home/sentinel"
 ln -s "$home/sentinel" "$dest/$(basename "$FIRST_ENG_FILE")"
-SECOND_ENG_FILE="$(agent_files_in engineering | awk 'NR==2')"
+SECOND_ENG_FILE="$(agent_files_in production | awk 'NR==2')"
 SECOND_ENG_SLUG="$(agent_slug "$SECOND_ENG_FILE")"
 run_install "$home" --tool claude-code --no-convert --agent "$FIRST_ENG_SLUG,$SECOND_ENG_SLUG" --path "$dest"
 assert_eq 0 "$RUN_STATUS" "a foreign agent-file symlink is skipped, not fatal"

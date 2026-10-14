@@ -28,6 +28,11 @@ separator_count="$(get_body "$OUTPUT_DIR/body-with-separator.md" | grep -cx -- '
   exit 1
 }
 
+mkdir -p "$OUTPUT_DIR/fixtures"
+cp tests/fixtures/conversion/test-agent.md "$OUTPUT_DIR/fixtures/"
+
+export AGENT_DIRS_OVERRIDE="fixtures"
+export REPO_ROOT="$OUTPUT_DIR"
 for tool in gemini-cli opencode qwen; do
   "$SCRIPT_DIR/convert.sh" --tool "$tool" --out "$OUTPUT_DIR" >/dev/null
 done
@@ -44,24 +49,24 @@ assert_quoted() {
 }
 
 assert_quoted \
-  "$OUTPUT_DIR/gemini-cli/agents/developer-tooling-engineer.md" \
+  "$OUTPUT_DIR/gemini-cli/agents/test-agent.md" \
   description
 assert_quoted \
-  "$OUTPUT_DIR/opencode/agents/developer-tooling-engineer.md" \
+  "$OUTPUT_DIR/opencode/agents/test-agent.md" \
   name
 assert_quoted \
-  "$OUTPUT_DIR/opencode/agents/developer-tooling-engineer.md" \
+  "$OUTPUT_DIR/opencode/agents/test-agent.md" \
   description
 assert_quoted \
-  "$OUTPUT_DIR/qwen/agents/programmatic-display-buyer.md" \
+  "$OUTPUT_DIR/qwen/agents/test-agent.md" \
   tools
 
 # Qwen resolves tools by its own names and silently keeps one it does not know,
 # so Claude Code's Read/Write/Bash have to arrive as read_file/write_file/
 # run_shell_command or the agent cannot read, create files, or run a shell.
-qwen_tools_line="$(grep -m1 '^tools:' "$OUTPUT_DIR/qwen/agents/programmatic-display-buyer.md")"
+qwen_tools_line="$(grep -m1 '^tools:' "$OUTPUT_DIR/qwen/agents/test-agent.md")"
 [[ "$qwen_tools_line" == "tools: 'web_fetch, web_search, read_file, write_file, edit, run_shell_command'" ]] || {
-  printf 'Expected Qwen tool names in programmatic-display-buyer, got: %s\n' "$qwen_tools_line" >&2
+  printf 'Expected Qwen tool names in test-agent, got: %s\n' "$qwen_tools_line" >&2
   exit 1
 }
 

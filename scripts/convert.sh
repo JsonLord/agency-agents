@@ -68,7 +68,7 @@ progress_bar() {
 
 # --- Paths ---
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
+REPO_ROOT="${REPO_ROOT:-$(cd "$SCRIPT_DIR/.." && pwd)}"
 OUT_DIR="$REPO_ROOT/integrations"
 TODAY="$(date +%Y-%m-%d)"
 
@@ -79,6 +79,9 @@ TODAY="$(date +%Y-%m-%d)"
 AGENT_DIRS=(
   discovery intelligence hypothesis proposition experimentation distribution production evaluation decision
 )
+if [[ -n "${AGENT_DIRS_OVERRIDE:-}" ]]; then
+  IFS=' ' read -r -a AGENT_DIRS <<< "$AGENT_DIRS_OVERRIDE"
+fi
 
 # --- Usage ---
 # usage [status] — print the header between the USAGE sentinels and exit.
@@ -469,48 +472,6 @@ HEREDOC
   fi
 }
 
-# qwen_tools <claude-tools> — the source's Claude Code tool list, renamed to the
-# tools Qwen Code registers.
-#
-# Sources list tools by Claude Code name ("WebFetch, WebSearch, Read, Write,
-# Edit"). Qwen resolves each entry against its own registry by tool name or
-# display name, and keeps an entry that matches neither as-is, so it matches
-# no tool (subagent-manager.ts resolveToolNames). Edit, WebFetch, WebSearch,
-# Grep and Glob happen to be Qwen display names too. Read, Write and Bash are
-# not (Qwen's are ReadFile, WriteFile and Shell), and `tools:` is an
-# allow-list, so those agents came up in Qwen able to edit files but not read
-# or create them, and the seven that list Bash with no shell.
-#
-# Names are mapped to Qwen's canonical tool names (tools/tool-names.ts); an
-# entry with no Qwen equivalent passes through unchanged.
-qwen_tools() {
-  local out="" t q
-  local IFS=','
-  for t in $1; do
-    t="${t#"${t%%[![:space:]]*}"}"; t="${t%"${t##*[![:space:]]}"}"
-    [[ -n "$t" ]] || continue
-    case "$t" in
-      Read)         q="read_file" ;;
-      Write)        q="write_file" ;;
-      Edit)         q="edit" ;;
-      MultiEdit)    q="edit" ;;
-      Bash)         q="run_shell_command" ;;
-      Grep)         q="grep_search" ;;
-      Glob)         q="glob" ;;
-      LS)           q="list_directory" ;;
-      WebFetch)     q="web_fetch" ;;
-      WebSearch)    q="web_search" ;;
-      TodoWrite)    q="todo_write" ;;
-      NotebookEdit) q="notebook_edit" ;;
-      Task)         q="agent" ;;
-      *)            q="$t" ;;
-    esac
-    case ", $out, " in *", $q, "*) continue ;; esac   # MultiEdit + Edit -> one edit
-    out="${out:+$out, }$q"
-  done
-  printf '%s' "$out"
-}
-
 convert_qwen() {
   local file="$1"
   local name description tools slug outfile body
@@ -762,7 +723,7 @@ check_agent_slug_collisions() {
   local seen_slugs=() seen_files=()
   local collisions=0
   for dir in "${AGENT_DIRS[@]}"; do
-    dirpath="$REPO_ROOT/agents/$dir"
+    if [[ "$dir" == "strategy" ]]; then dirpath="$REPO_ROOT/strategy"; elif [[ "$dir" == "fixtures" ]]; then dirpath="$REPO_ROOT/fixtures"; else dirpath="$REPO_ROOT/agents/$dir"; fi
     [[ -d "$dirpath" ]] || continue
     while IFS= read -r -d '' file; do
       is_agent_file "$file" || continue
@@ -796,7 +757,7 @@ run_conversions() {
   clean_tool_output "$tool" || return 1
 
   for dir in "${AGENT_DIRS[@]}"; do
-    local dirpath="$REPO_ROOT/agents/$dir"
+    local dirpath; if [[ "$dir" == "strategy" ]]; then dirpath="$REPO_ROOT/strategy"; elif [[ "$dir" == "fixtures" ]]; then dirpath="$REPO_ROOT/fixtures"; else dirpath="$REPO_ROOT/agents/$dir"; fi
     [[ -d "$dirpath" ]] || continue
 
     while IFS= read -r -d '' file; do
