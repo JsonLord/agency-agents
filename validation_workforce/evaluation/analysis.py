@@ -1,7 +1,12 @@
 """Pure evaluation helpers; none of these functions mutate canonical state."""
 from collections import Counter
 
-FORBIDDEN = {"qualification", "qualification_band", "canonical_score", "authoritative_confidence"}
+FORBIDDEN = {
+    "authoritative_confidence",
+    "canonical_score",
+    "qualification",
+    "qualification_band",
+}
 
 def analyze_lane(context):
     business = sum(bool(context.get(k)) for k in ("buyer_role", "budget", "procurement"))
@@ -39,6 +44,25 @@ def analyze_evidence(evidence):
             "evidence_gaps": ["seek behavioral evidence"] if direct == 0 else [], "polarity_counts": dict(polarities)}
 
 def enforce_boundary(payload):
-    violations = FORBIDDEN.intersection(payload)
-    if violations: raise ValueError(f"Agency may not author canonical fields: {sorted(violations)}")
+    """Reject canonical Nodepad fields anywhere in an Agency-authored payload.
+
+    Checking recursively is intentional: artifacts and handoffs are still Agency
+    output and must not become a back door for writing Nodepad decisions.
+    """
+    violations = set()
+
+    def visit(value):
+        if isinstance(value, dict):
+            violations.update(FORBIDDEN.intersection(value))
+            for child in value.values():
+                visit(child)
+        elif isinstance(value, list):
+            for child in value:
+                visit(child)
+
+    visit(payload)
+    if violations:
+        raise ValueError(
+            f"Agency may not author canonical fields: {sorted(violations)}"
+        )
     return payload

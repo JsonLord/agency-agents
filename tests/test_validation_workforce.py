@@ -50,6 +50,7 @@ class Tests(unittest.TestCase):
   evidence=[{'id':'a','polarity':'supporting','provider':'web','source_url':'a','source_type':'report'},{'id':'b','polarity':'contradicting','provider':'github','source_url':'b','source_type':'behavior'}]
   result=analyze_evidence(evidence);self.assertEqual(result['contradiction_flags'],['b']);self.assertEqual(result['source_diversity']['provider_count'],2);self.assertNotIn('qualification',result)
   with self.assertRaises(ValueError):enforce_boundary({'qualification':'validated'})
+  with self.assertRaises(ValueError):enforce_boundary({'artifacts':[{'canonical_score':0.9}]})
  def test_lanes_assumptions_pressure_and_harness(self):
   self.assertEqual(analyze_lane({'buyer_role':'CTO','budget':True,'procurement':True})['lane'],'b2b');self.assertEqual(analyze_lane({'habit':True,'frequency':'daily','identity_value':True})['lane'],'b2c')
   assumptions=[{'statement':'cheap','impact':2,'uncertainty':2},{'statement':'killer','impact':5,'uncertainty':5}]
@@ -62,6 +63,10 @@ class Tests(unittest.TestCase):
   with self.assertRaises(RuntimeError):unavailable.search('q',limit=1)
   key=idempotency_key('w','flow','github',' Q ','u','x');self.assertEqual(key,idempotency_key('w','flow','github','q','u','x'));self.assertEqual(len(deduplicate([{**item,'idempotency_key':key},{**item,'idempotency_key':key}])),1)
   self.assertFalse(RedditProvider().health().available)
+  with self.assertRaisesRegex(ValueError,'unsupported research intent'):
+   validate_provider_result({'provider':'web','query':'q','retrieved_at':'now','intent':'confirm-again','items':[]})
+  with self.assertRaisesRegex(ValueError,'secret fields'):
+   validate_provider_result({'provider':'web','query':'q','retrieved_at':'now','items':[{'source_url':'u','content':'x','metadata':{'authorization':'secret'}}]})
  def test_router_credentials_rate_limit_and_fallback(self):
   registry=[{'id':'x','scope':'read','approval':'none','providers':[{'id':'limited','priority':1,'free':True,'available':True,'healthy':True,'rate_limited':True},{'id':'credentialed','priority':2,'free':True,'available':True,'healthy':True,'auth_env':'ABSENT_TEST_TOKEN'},{'id':'fallback','priority':3,'free':True,'available':True,'healthy':True}]}]
   self.assertEqual(CapabilityRouter(registry).resolve('x')['id'],'fallback')
