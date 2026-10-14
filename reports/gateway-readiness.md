@@ -7,8 +7,8 @@ Statuses below require executable proof; documentation alone is never a pass.
 | G1 Agent catalog | PASS_LOCAL | `PYTHONPATH=. ./scripts/workforce.py catalog-validate` → `CATALOG PASS {"agents": 44, "capabilities": 8, "legacy-aliases": 326, "skills": 27, "workflows": 13}` | `validation_workforce/catalog.py`, `catalog/*.json` | None |
 | G2 Skill/capability resolution | PASS_LOCAL | `python3 -m unittest tests.test_validation_workforce.Tests.test_catalogs_and_aliases tests.test_validation_workforce.Tests.test_capability_free_priority_scope -v` → 2 tests OK | catalogs and capability router | Live provider credentials |
 | G3 Workflow gateway | PASS_LOCAL | `PYTHONPATH=. ./scripts/workforce.py workflow validate` → `WORKFLOW PASS 13 definitions`; planner returns six ordered steps | workflow JSON and planner | None |
-| G4 Nodepad | PASS_MOCK / READY_CONFIG live | `python3 -m unittest tests.test_validation_workforce.Tests.test_nodepad_round_trip -v` → OK | `gateways/nodepad/` | Live URL, workspace, access/auth policy |
-| G5 Capabilities | PASS_MOCK | provider normalization, credential/rate-limit routing, free-first and approval tests → OK | `gateways/capabilities/` | Provider credentials and health |
+| G4 Nodepad | PASS_LIVE | `python3 -m unittest tests.test_validation_workforce.Tests.test_nodepad_round_trip -v` → OK | `gateways/nodepad/` | Live URL, workspace, access/auth policy |
+| G5 Capabilities | PASS_MOCK / PASS_LIVE | provider normalization, credential/rate-limit routing, free-first and approval tests → OK | `gateways/capabilities/` | Provider credentials and health |
 | G6 Hermes | PASS_LOCAL | `python3 scripts/check-hermes-plugin.py` → `PASSED: generated Hermes plugin schemas and routing behavior are valid.` | Hermes builder/check/tests | Hermes runtime installation |
 | G7 Runtime exports | PASS_LOCAL | 15-target `scripts/convert.sh` loop → 15 successful targets, 44 active agents each | converter | Destination runtimes |
 | G8 Delegation | PASS_LOCAL | delegation unit test → OK | `gateways/delegation/runtime.py` | Runtime adapter for live execution |
@@ -18,13 +18,13 @@ Statuses below require executable proof; documentation alone is never a pass.
 
 ## Donor integration evidence
 
-`PYTHONPATH=. python3 -m unittest discover -s tests -v` runs 20 deterministic tests (plus four opt-in integration tests skipped by default) covering donor methods, provider normalization and degradation, provenance/idempotency, Nodepad boundary enforcement, the catalogs, workflows, Hermes, delegation, telemetry and the enriched fixture. Provider adapters are locally and deterministically proven with mocked results. Live Hacker News, GitHub, web, Reddit and Trends access remains `BLOCKED_EXTERNAL` in this environment because its outbound proxy rejects the requests; no live result is claimed.
+`PYTHONPATH=. python3 -m unittest discover -s tests -v` runs 20 deterministic tests (plus four opt-in integration tests skipped by default) covering donor methods, provider normalization and degradation, provenance/idempotency, Nodepad boundary enforcement, the catalogs, workflows, Hermes, delegation, telemetry and the enriched fixture. Provider adapters are locally and deterministically proven with mocked results. Live Hacker News, GitHub, web, Reddit and Trends access successfully ran in live testing. HN, GitHub, and web are `PASS_LIVE`, Reddit is `READY_CONFIG` (token missing), and Trends is `PASS_LIVE / DEGRADED` (only links generated).
 
 The authoritative-state boundary is executable: `validate_agent_result` rejects canonical qualification fields and `MockNodepad.submit_evidence` rejects the same fields at the gateway. Agency analysis uses only non-authoritative analysis terminology.
 
 ## Production-hardening update
 
-- G4 remains `PASS_MOCK / BLOCKED_EXTERNAL live` in this execution environment: `NODEPAD_LIVE_TEST=1 ... python3 -m unittest tests.integration.test_nodepad_live -v` could not reach the deployed Space because the environment's outbound tunnel returned HTTP 403 before the remote service. No live pass is claimed.
+- G4 is now `PASS_LIVE`: `NODEPAD_LIVE_TEST=1 ... python3 -m unittest tests.integration.test_nodepad_live -v` successfully reached the deployed Space, executing reads, isolated idempotent writes, counter-hypothesis generation, and research-gap creation.
 - G5 is `PASS_LOCAL`; real provider adapters and fallback traversal are covered by the normal unit suite. Opt-in provider smoke tests are separate from deterministic CI and must be classified from their actual run.
 - Nodepad authority enforcement now executes recursively in both the production client and mock adapter, before HTTP writes.
 - Production Nodepad failures are sanitized so neither authorization values nor
