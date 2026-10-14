@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - run: |
-          FILES=$(git diff --name-only HEAD^ HEAD -- 'agents/discovery/*.md' 'agents/intelligence/*.md' 'agents/hypothesis/*.md' 'agents/proposition/*.md' 'agents/experimentation/*.md' 'agents/distribution/*.md' 'agents/production/*.md' 'agents/evaluation/*.md' 'agents/decision/*.md')
+          git fetch origin "${{ github.base_ref }}"
+          FILES=$(git diff --name-only "origin/${{ github.base_ref }}...HEAD" -- 'agents/discovery/*.md' 'agents/intelligence/*.md' 'agents/hypothesis/*.md' 'agents/proposition/*.md' 'agents/experimentation/*.md' 'agents/distribution/*.md' 'agents/production/*.md' 'agents/evaluation/*.md' 'agents/decision/*.md')
           test -z "$FILES" || ./scripts/lint-agents.sh $FILES

@@ -11,7 +11,8 @@ from validation_workforce.e2e import run
 from validation_workforce.evaluation import analyze_evidence,analyze_lane,map_assumptions,pressure_test
 from validation_workforce.evaluation.analysis import enforce_boundary
 from validation_workforce.harness import deduplicate,idempotency_key,validate_agent_result,validate_provider_result
-from gateways.capabilities.providers import GitHubProvider,ProviderHealth,RedditProvider
+from gateways.capabilities.providers import StaticProvider,ProviderHealth,RedditProvider,HackerNewsProvider,GitHubProvider,WebProvider
+from gateways.nodepad.client import NodepadClient
 
 class Tests(unittest.TestCase):
  def test_catalogs_and_aliases(self):
@@ -24,7 +25,9 @@ class Tests(unittest.TestCase):
   router=CapabilityRouter([{'id':'x','scope':'read','approval':'none','providers':[{'id':'paid','priority':1,'free':False,'available':True,'healthy':True},{'id':'free','priority':9,'free':True,'available':True,'healthy':True}]}]);self.assertEqual(router.resolve('x')['id'],'free')
   with self.assertRaises(PermissionError):CapabilityRouter().resolve('artifact.generate')
   self.assertEqual(CapabilityRouter().resolve('artifact.generate',approved=True)['id'],'local-template')
- def test_workflow_validation_and_plan(self):self.assertEqual(len(plan('validate-idea',{'hypothesis':'H1'})['steps']),6)
+ def test_workflow_validation_and_plan(self):
+  steps=plan('validate-idea',{'hypothesis':'H1'})['steps'];self.assertEqual(len(steps),7)
+  by_id={x['id']:x for x in steps};self.assertEqual(by_id['step-2']['depends_on'],['step-1']);self.assertEqual(by_id['step-intelligence']['depends_on'],['step-1'])
  def test_contracts_and_duplicate_keys(self):
   for path in Path('contracts').glob('*.json'):Draft7Validator.check_schema(json.loads(path.read_text()))
   def reject(pairs):
@@ -58,8 +61,8 @@ class Tests(unittest.TestCase):
   with self.assertRaises(ValueError):validate_agent_result({'qualification_band':'strong'})
  def test_provider_normalization_health_and_deduplication(self):
   item={'source_url':'https://example.test/1','content':'x','metadata':{}}
-  result=GitHubProvider([item]).search('q',limit=1,context={'intent':'disconfirm'});validate_provider_result(result);self.assertEqual(result['intent'],'disconfirm')
-  unavailable=GitHubProvider([],ProviderHealth(False,'rate_limited',True,60))
+  result=StaticProvider('github',[item]).search('q',limit=1,context={'intent':'disconfirm'});validate_provider_result(result);self.assertEqual(result['intent'],'disconfirm')
+  unavailable=StaticProvider('github',[],ProviderHealth(False,'rate_limited',True,60))
   with self.assertRaises(RuntimeError):unavailable.search('q',limit=1)
   key=idempotency_key('w','flow','github',' Q ','u','x');self.assertEqual(key,idempotency_key('w','flow','github','q','u','x'));self.assertEqual(len(deduplicate([{**item,'idempotency_key':key},{**item,'idempotency_key':key}])),1)
   self.assertFalse(RedditProvider().health().available)
@@ -70,4 +73,28 @@ class Tests(unittest.TestCase):
  def test_router_credentials_rate_limit_and_fallback(self):
   registry=[{'id':'x','scope':'read','approval':'none','providers':[{'id':'limited','priority':1,'free':True,'available':True,'healthy':True,'rate_limited':True},{'id':'credentialed','priority':2,'free':True,'available':True,'healthy':True,'auth_env':'ABSENT_TEST_TOKEN'},{'id':'fallback','priority':3,'free':True,'available':True,'healthy':True}]}]
   self.assertEqual(CapabilityRouter(registry).resolve('x')['id'],'fallback')
+ def test_router_semantic_fallback_and_cycles(self):
+  registry=[{'id':'a','scope':'read','approval':'none','fallback':'b','providers':[{'id':'bad','free':True,'available':False}]},{'id':'b','scope':'read','approval':'none','providers':[{'id':'ok','free':True,'priority':1}]}]
+  result=CapabilityRouter(registry).resolve_path('a');self.assertEqual((result['provider'],result['fallback_chain']),('ok',['a','b']))
+  registry[1]['providers']=[];registry[1]['fallback']='a'
+  with self.assertRaisesRegex(RuntimeError,'cycle'):CapabilityRouter(registry).resolve_path('a')
+ def test_nodepad_http_boundary_headers_and_paths(self):
+  calls=[]
+  def transport(method,url,headers,body):calls.append((method,url,headers,json.loads(body) if body else None));return {'ok':True}
+  client=NodepadClient('https://nodepad.test','secret','workspace',transport=transport)
+  client.submit_evidence({'claim':'x','idempotency_key':'stable'})
+  self.assertEqual(calls[0][0:2],('POST','https://nodepad.test/api/v1/workspaces/workspace/evidence'));self.assertEqual(calls[0][2]['Authorization'],'Bearer secret');self.assertEqual(calls[0][2]['Idempotency-Key'],'stable')
+  with self.assertRaises(ValueError):client.submit_evidence({'nested':{'qualification_band':'strong'}})
+  self.assertEqual(len(calls),1)
+ def test_lane_mixed_and_quality_vector(self):
+  lane=analyze_lane({'budget':True,'habit':True});self.assertEqual(lane['lane'],'mixed');self.assertIn('budget',lane['signals']['b2b']);self.assertIn('habit',lane['signals']['b2c']);self.assertIn('roi_threshold',lane['checks']);self.assertIn('retention',lane['checks'])
+  empty=analyze_evidence([]);self.assertEqual(empty['analysis_quality'],0);self.assertEqual(set(empty['quality_dimensions']),{'directness','recency','source_independence','behavioral_strength','segment_relevance','contradiction_coverage','triangulation'})
+ def test_live_provider_normalizers_with_mocked_transport(self):
+  hn=HackerNewsProvider();hn._json=lambda *_:({'hits':[{'objectID':'1','title':'T','url':'https://example.test/hn','author':'a','created_at':'now'}]}, {})
+  gh=GitHubProvider();gh._json=lambda *_:({'items':[{'html_url':'https://example.test/repo','full_name':'o/r','description':'d','owner':{'login':'o'}}]}, {})
+  web=WebProvider();web._json=lambda *_:({'RelatedTopics':[{'FirstURL':'https://example.test/web','Text':'Title - snippet'}]}, {})
+  for provider in (hn,gh,web):
+   result=validate_provider_result(provider.search('q',limit=1));self.assertEqual(len(result['items']),1);self.assertTrue(result['items'][0]['source_url'].startswith('https://'))
+  hn._json=lambda *_:(_ for _ in ()).throw(RuntimeError('provider_network_error: TimeoutError'))
+  with self.assertRaisesRegex(RuntimeError,'TimeoutError'):hn.search('q',limit=1)
 if __name__=='__main__':unittest.main()

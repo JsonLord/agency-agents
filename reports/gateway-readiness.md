@@ -21,3 +21,9 @@ Statuses below require executable proof; documentation alone is never a pass.
 `PYTHONPATH=. python3 -m unittest discover -s tests -v` runs 14 tests covering donor methods, provider normalization and degradation, provenance/idempotency, Nodepad boundary enforcement, the catalogs, workflows, Hermes, delegation, telemetry and the enriched fixture. Provider adapters are locally and deterministically proven with mocked results. Live Hacker News, GitHub, web, Reddit and Trends access remains `READY_CONFIG`; availability, credentials and rate limits are external and no live result is claimed.
 
 The authoritative-state boundary is executable: `validate_agent_result` rejects canonical qualification fields and `MockNodepad.submit_evidence` rejects the same fields at the gateway. Agency analysis uses only non-authoritative analysis terminology.
+
+## Production-hardening update
+
+- G4 remains `PASS_MOCK / BLOCKED_EXTERNAL live` in this execution environment: `NODEPAD_LIVE_TEST=1 ... python3 -m unittest tests.integration.test_nodepad_live -v` could not reach the deployed Space because the environment's outbound tunnel returned HTTP 403 before the remote service. No live pass is claimed.
+- G5 is `PASS_LOCAL`; real provider adapters and fallback traversal are covered by the normal unit suite. Opt-in provider smoke tests are separate from deterministic CI and must be classified from their actual run.
+- Nodepad authority enforcement now executes recursively in both the production client and mock adapter, before HTTP writes.

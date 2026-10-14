@@ -427,11 +427,7 @@
     "steps": [
       {
         "agent_id": "problem-explorer",
-        "capabilities": [
-          "research.web",
-          "research.hackernews",
-          "research.github"
-        ],
+        "capabilities": [],
         "depends_on": [],
         "expected_outputs": [
           "problem-explorer-result"
@@ -457,10 +453,30 @@
         ]
       },
       {
+        "agent_id": "market-intelligence-analyst",
+        "capabilities": [
+          "research.web",
+          "research.hackernews",
+          "research.github"
+        ],
+        "depends_on": [
+          "step-1"
+        ],
+        "expected_outputs": [
+          "market-intelligence-result"
+        ],
+        "id": "step-intelligence",
+        "skill_ids": [
+          "competitor-mapping",
+          "source-diversity"
+        ]
+      },
+      {
         "agent_id": "hypothesis-formulator",
         "capabilities": [],
         "depends_on": [
-          "step-2"
+          "step-2",
+          "step-intelligence"
         ],
         "expected_outputs": [
           "hypothesis-formulator-result"

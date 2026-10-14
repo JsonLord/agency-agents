@@ -2,7 +2,7 @@
 from gateways.nodepad.mock import MockNodepad
 from gateways.telemetry.events import Event
 from gateways.telemetry.sink import MemorySink
-from gateways.capabilities.providers import HackerNewsProvider, GitHubProvider, WebProvider
+from gateways.capabilities.providers import StaticProvider
 from validation_workforce.evaluation import analyze_evidence, analyze_lane, map_assumptions, pressure_test
 from validation_workforce.harness import idempotency_key, validate_agent_result, validate_provider_result
 
@@ -15,9 +15,9 @@ def run(fixture):
     lane=analyze_lane(fixture["lane_context"])
     assumptions=map_assumptions(fixture["assumptions"])
     pressure=pressure_test(fixture["hypothesis"]["statement"],fixture["assumptions"])
-    provider_types=(HackerNewsProvider,GitHubProvider,WebProvider); external=[]
-    for provider_type, provider_fixture in zip(provider_types,fixture["provider_results"]):
-        provider=provider_type(provider_fixture["items"]); sink.emit(Event("capability_requested",{"capability":provider_fixture["capability"],"provider":provider.id,"query_id":"accessibility-rework","rate_limit_state":"ok"}))
+    external=[]
+    for provider_fixture in fixture["provider_results"]:
+        provider=StaticProvider(provider_fixture["capability"].split(".")[-1],provider_fixture["items"]); sink.emit(Event("capability_requested",{"capability":provider_fixture["capability"],"provider":provider.id,"query_id":"accessibility-rework","rate_limit_state":"ok"}))
         research=validate_provider_result(provider.search(provider_fixture["query"],limit=10,context={"intent":"disconfirm"}))
         for item in research["items"]:
             candidate={**item,"provider":research["provider"],"query":research["query"],"retrieved_at":research["retrieved_at"],"polarity":item.get("polarity","unknown"),"source_type":item.get("source_type","web")}

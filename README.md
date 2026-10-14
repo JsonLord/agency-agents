@@ -1192,3 +1192,7 @@ Made with ❤️ by the community, for the community
 This branch organizes Agency Agents as a 44-persona venture-validation workforce across nine active divisions. Nodepad remains the brain/state/truth; agents are a stateless workforce that submits evidence and proposals without assigning authoritative qualification. The repository includes 20 reusable skills, 13 declarative workflows, deterministic catalogs, runtime-independent gateways, and 282 preserved upstream personas under `legacy-agents/`.
 
 Validate the control plane with `PYTHONPATH=. ./scripts/workforce.py catalog-validate`, inspect or plan workflows with `scripts/workforce.py workflow`, and run the deterministic integration proof with `PYTHONPATH=. ./scripts/run-e2e-fixture.py`.
+
+## Production integration hardening
+
+Research capabilities have distinct real HTTP adapters and deterministic static test adapters. Semantic routing exposes fallback paths, while every production Nodepad write passes a recursive authority-boundary check and supports deterministic idempotency keys. Live network tests are opt-in and never run in normal CI.
