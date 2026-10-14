@@ -13,7 +13,8 @@
       "id": "step-1",
       "agent_id": "customer-investigator",
       "skill_ids": [
-        "customer-interview"
+        "customer-interview",
+        "pivot-reasoning"
       ],
       "depends_on": [],
       "expected_outputs": [

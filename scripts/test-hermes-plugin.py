@@ -8,6 +8,7 @@ import json
 import sys
 import types
 import unittest
+import subprocess
 from enum import Enum
 from pathlib import Path
 from types import SimpleNamespace
@@ -85,6 +86,8 @@ def child_result(state, *, ready=True, summary=None, error=None):
 
 
 def load_plugin(lifecycle):
+    if not PLUGIN.is_file():
+        subprocess.run([sys.executable, str(ROOT / "scripts" / "build-hermes-plugin.py"), "--repo-root", str(ROOT)], check=True, capture_output=True, text=True)
     agent_module = types.ModuleType("agent")
     lifecycle_module = types.ModuleType("agent.subagent_lifecycle")
     setattr(lifecycle_module, "SubagentLaunchRequest", FakeRequest)

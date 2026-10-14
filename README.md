@@ -1,3 +1,9 @@
+# Validation-workforce fork
+
+This branch extends Agency Agents as a **workforce and methodology layer**: 44 active validation personas, declarative workflows, deterministic catalogs, research-provider adapters, and a validation harness. Nodepad is an independent service and remains the only canonical owner of evidence, hypotheses, scores, confidence, qualification, graph state, experiments, decisions, and history. Agency communicates with it only through the public gateway. See [architecture](docs/architecture.md), [research providers](docs/research-providers.md), and [donor attribution](docs/donor-attribution.md).
+
+---
+
 # 🎭 The Agency: AI Specialists Ready to Transform Your Workflow
 
 > **A complete AI agency at your fingertips** - From frontend wizards to Reddit community ninjas, from whimsy injectors to reality checkers. Each agent is a specialized expert with personality, processes, and proven deliverables.

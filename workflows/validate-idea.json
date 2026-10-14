@@ -13,14 +13,17 @@
       "id": "step-1",
       "agent_id": "problem-explorer",
       "skill_ids": [
-        "pain-mining"
+        "pain-mining",
+        "validation-lane"
       ],
       "depends_on": [],
       "expected_outputs": [
         "problem-explorer-result"
       ],
       "capabilities": [
-        "research.web"
+        "research.web",
+        "research.hackernews",
+        "research.github"
       ]
     },
     {
@@ -41,7 +44,8 @@
       "id": "step-3",
       "agent_id": "hypothesis-formulator",
       "skill_ids": [
-        "hypothesis-framing"
+        "hypothesis-framing",
+        "assumption-mapping"
       ],
       "depends_on": [
         "step-2"
@@ -55,7 +59,8 @@
       "id": "step-4",
       "agent_id": "counter-hypothesis-generator",
       "skill_ids": [
-        "hypothesis-framing"
+        "hypothesis-framing",
+        "pressure-test"
       ],
       "depends_on": [
         "step-3"
@@ -69,7 +74,8 @@
       "id": "step-5",
       "agent_id": "experiment-designer",
       "skill_ids": [
-        "experiment-design"
+        "experiment-design",
+        "pretotype"
       ],
       "depends_on": [
         "step-4"
@@ -83,7 +89,9 @@
       "id": "step-6",
       "agent_id": "evidence-auditor",
       "skill_ids": [
-        "evidence-audit"
+        "evidence-audit",
+        "source-diversity",
+        "evidence-calibration"
       ],
       "depends_on": [
         "step-5"

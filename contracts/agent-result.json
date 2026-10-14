@@ -1,1 +1,48 @@
-{"$schema":"http://json-schema.org/draft-07/schema#","$id":"agent-result.json","title":"Agent Result","type":"object","required":["agent_id","status","summary","artifacts","evidence_ids","handoffs","authoritative_qualification"],"properties":{"agent_id":{"type":"string"},"status":{"enum":["completed","failed","partial"]},"summary":{"type":"string"},"artifacts":{"type":"array","items":{"type":"object"}},"evidence_ids":{"type":"array","items":{"type":"string"}},"handoffs":{"type":"array","items":{"$ref":"delegation-event.json"}},"authoritative_qualification":{"const":false}},"additionalProperties":false}
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "agent-result.json",
+  "title": "Agent Result",
+  "type": "object",
+  "required": [
+    "agent_id",
+    "status",
+    "summary",
+    "artifacts",
+    "evidence_ids",
+    "handoffs"
+  ],
+  "properties": {
+    "agent_id": {
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "failed",
+        "partial"
+      ]
+    },
+    "summary": {
+      "type": "string"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "evidence_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "handoffs": {
+      "type": "array",
+      "items": {
+        "$ref": "delegation-event.json"
+      }
+    }
+  },
+  "additionalProperties": false
+}

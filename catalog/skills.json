@@ -56,6 +56,13 @@
     "version": "1.0.0"
   },
   {
+    "description": "Calibrate evidence analysis.",
+    "id": "evidence-calibration",
+    "name": "evidence-calibration",
+    "source": "skills/evidence-calibration/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
     "description": "A reusable skill for designing and structuring experiments to test venture hypotheses and assumptions.",
     "id": "experiment-design",
     "name": "experiment-design",
@@ -98,10 +105,31 @@
     "version": "1.0.0"
   },
   {
+    "description": "Reason about pivots.",
+    "id": "pivot-reasoning",
+    "name": "pivot-reasoning",
+    "source": "skills/pivot-reasoning/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
     "description": "A reusable skill for defining how a venture should be positioned in the minds of target customers relative to alternatives.",
     "id": "positioning",
     "name": "positioning",
     "source": "skills/positioning/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "Pressure-test a hypothesis.",
+    "id": "pressure-test",
+    "name": "pressure-test",
+    "source": "skills/pressure-test/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "Design a pretotype.",
+    "id": "pretotype",
+    "name": "pretotype",
+    "source": "skills/pretotype/SKILL.md",
     "version": "1.0.0"
   },
   {
@@ -119,6 +147,20 @@
     "version": "1.0.0"
   },
   {
+    "description": "Measure source diversity.",
+    "id": "source-diversity",
+    "name": "source-diversity",
+    "source": "skills/source-diversity/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "Triangulate independent sources.",
+    "id": "source-triangulation",
+    "name": "source-triangulation",
+    "source": "skills/source-triangulation/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
     "description": "A reusable skill for identifying and analyzing substitute solutions that customers might use instead of the venture's proposed solution.",
     "id": "substitute-analysis",
     "name": "substitute-analysis",
@@ -130,6 +172,13 @@
     "id": "unit-economics",
     "name": "unit-economics",
     "source": "skills/unit-economics/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
+    "description": "Select a B2B, B2C or mixed lane.",
+    "id": "validation-lane",
+    "name": "validation-lane",
+    "source": "skills/validation-lane/SKILL.md",
     "version": "1.0.0"
   },
   {

@@ -114,7 +114,8 @@
         ],
         "id": "step-1",
         "skill_ids": [
-          "evidence-audit"
+          "evidence-audit",
+          "pressure-test"
         ]
       },
       {
@@ -128,7 +129,8 @@
         ],
         "id": "step-2",
         "skill_ids": [
-          "evidence-audit"
+          "evidence-audit",
+          "source-triangulation"
         ]
       }
     ],
@@ -204,7 +206,8 @@
         ],
         "id": "step-1",
         "skill_ids": [
-          "hypothesis-framing"
+          "hypothesis-framing",
+          "assumption-mapping"
         ]
       },
       {
@@ -218,7 +221,8 @@
         ],
         "id": "step-2",
         "skill_ids": [
-          "evidence-audit"
+          "evidence-audit",
+          "source-triangulation"
         ]
       }
     ],
@@ -294,7 +298,8 @@
         ],
         "id": "step-1",
         "skill_ids": [
-          "customer-interview"
+          "customer-interview",
+          "pivot-reasoning"
         ]
       },
       {
@@ -339,7 +344,8 @@
         ],
         "id": "step-1",
         "skill_ids": [
-          "customer-interview"
+          "customer-interview",
+          "evidence-calibration"
         ]
       },
       {
@@ -353,7 +359,8 @@
         ],
         "id": "step-2",
         "skill_ids": [
-          "evidence-audit"
+          "evidence-audit",
+          "pivot-reasoning"
         ]
       }
     ],
@@ -421,7 +428,9 @@
       {
         "agent_id": "problem-explorer",
         "capabilities": [
-          "research.web"
+          "research.web",
+          "research.hackernews",
+          "research.github"
         ],
         "depends_on": [],
         "expected_outputs": [
@@ -429,7 +438,8 @@
         ],
         "id": "step-1",
         "skill_ids": [
-          "pain-mining"
+          "pain-mining",
+          "validation-lane"
         ]
       },
       {
@@ -457,7 +467,8 @@
         ],
         "id": "step-3",
         "skill_ids": [
-          "hypothesis-framing"
+          "hypothesis-framing",
+          "assumption-mapping"
         ]
       },
       {
@@ -471,7 +482,8 @@
         ],
         "id": "step-4",
         "skill_ids": [
-          "hypothesis-framing"
+          "hypothesis-framing",
+          "pressure-test"
         ]
       },
       {
@@ -485,7 +497,8 @@
         ],
         "id": "step-5",
         "skill_ids": [
-          "experiment-design"
+          "experiment-design",
+          "pretotype"
         ]
       },
       {
@@ -499,7 +512,9 @@
         ],
         "id": "step-6",
         "skill_ids": [
-          "evidence-audit"
+          "evidence-audit",
+          "source-diversity",
+          "evidence-calibration"
         ]
       }
     ],

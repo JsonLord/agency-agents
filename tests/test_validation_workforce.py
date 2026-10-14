@@ -8,10 +8,14 @@ from gateways.telemetry.events import Event,VOCABULARY
 from gateways.telemetry.sink import MemorySink
 from validation_workforce.catalog import ROOT,build,plan,validate
 from validation_workforce.e2e import run
+from validation_workforce.evaluation import analyze_evidence,analyze_lane,map_assumptions,pressure_test
+from validation_workforce.evaluation.analysis import enforce_boundary
+from validation_workforce.harness import deduplicate,idempotency_key,validate_agent_result,validate_provider_result
+from gateways.capabilities.providers import GitHubProvider,ProviderHealth,RedditProvider
 
 class Tests(unittest.TestCase):
  def test_catalogs_and_aliases(self):
-  data=build();self.assertEqual(validate(data),{'agents':44,'skills':20,'workflows':13,'capabilities':5,'legacy-aliases':326})
+  data=build();counts=validate(data);self.assertEqual((counts['agents'],counts['workflows'],counts['capabilities'],counts['legacy-aliases']),(44,13,8,326));self.assertGreaterEqual(counts['skills'],27)
   self.assertTrue(all((ROOT/path).is_file() for path in data['legacy-aliases'].values()))
  def test_missing_references_rejected(self):
   data=build();data['agents'][0]['skills'].append('missing')
@@ -41,5 +45,24 @@ class Tests(unittest.TestCase):
   spec=importlib.util.spec_from_file_location('builder','scripts/build-hermes-plugin.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);agents={a['slug']:a['division'] for a in m.collect_agents(ROOT)}
   self.assertEqual(len(agents),44);self.assertEqual({x:agents[x] for x in ['customer-investigator','hypothesis-formulator','experiment-designer','red-team-analyst','venture-judge']},{'customer-investigator':'discovery','hypothesis-formulator':'hypothesis','experiment-designer':'experimentation','red-team-analyst':'evaluation','venture-judge':'decision'})
  def test_e2e(self):
-  result=run(json.loads(Path('tests/fixtures-accessibility.json').read_text()));self.assertEqual([result[x] for x in ('support','contradictory','counter_hypothesis','research_gap','experiment','authoritative_qualification')],[1,1,1,1,1,0]);Draft7Validator(json.loads(Path('contracts/agent-result.json').read_text())).validate(result['agent_result'])
+  result=run(json.loads(Path('tests/fixtures-accessibility.json').read_text()));self.assertEqual([result[x] for x in ('support','contradictory','counter_hypothesis','research_gap','experiment','authoritative_qualification')],[1,1,1,1,1,0]);self.assertEqual(result['external_research'],3);self.assertGreaterEqual(result['source_diversity'],3);self.assertEqual(len(result['nodepad'].state['evidence']),5);Draft7Validator(json.loads(Path('contracts/agent-result.json').read_text())).validate(result['agent_result'])
+ def test_product_eval_methods_preserve_contradictions(self):
+  evidence=[{'id':'a','polarity':'supporting','provider':'web','source_url':'a','source_type':'report'},{'id':'b','polarity':'contradicting','provider':'github','source_url':'b','source_type':'behavior'}]
+  result=analyze_evidence(evidence);self.assertEqual(result['contradiction_flags'],['b']);self.assertEqual(result['source_diversity']['provider_count'],2);self.assertNotIn('qualification',result)
+  with self.assertRaises(ValueError):enforce_boundary({'qualification':'validated'})
+ def test_lanes_assumptions_pressure_and_harness(self):
+  self.assertEqual(analyze_lane({'buyer_role':'CTO','budget':True,'procurement':True})['lane'],'b2b');self.assertEqual(analyze_lane({'habit':True,'frequency':'daily','identity_value':True})['lane'],'b2c')
+  assumptions=[{'statement':'cheap','impact':2,'uncertainty':2},{'statement':'killer','impact':5,'uncertainty':5}]
+  self.assertEqual(map_assumptions(assumptions)['kill_assumption']['statement'],'killer');self.assertIn('pre_mortem',pressure_test('H',assumptions))
+  with self.assertRaises(ValueError):validate_agent_result({'qualification_band':'strong'})
+ def test_provider_normalization_health_and_deduplication(self):
+  item={'source_url':'https://example.test/1','content':'x','metadata':{}}
+  result=GitHubProvider([item]).search('q',limit=1,context={'intent':'disconfirm'});validate_provider_result(result);self.assertEqual(result['intent'],'disconfirm')
+  unavailable=GitHubProvider([],ProviderHealth(False,'rate_limited',True,60))
+  with self.assertRaises(RuntimeError):unavailable.search('q',limit=1)
+  key=idempotency_key('w','flow','github',' Q ','u','x');self.assertEqual(key,idempotency_key('w','flow','github','q','u','x'));self.assertEqual(len(deduplicate([{**item,'idempotency_key':key},{**item,'idempotency_key':key}])),1)
+  self.assertFalse(RedditProvider().health().available)
+ def test_router_credentials_rate_limit_and_fallback(self):
+  registry=[{'id':'x','scope':'read','approval':'none','providers':[{'id':'limited','priority':1,'free':True,'available':True,'healthy':True,'rate_limited':True},{'id':'credentialed','priority':2,'free':True,'available':True,'healthy':True,'auth_env':'ABSENT_TEST_TOKEN'},{'id':'fallback','priority':3,'free':True,'available':True,'healthy':True}]}]
+  self.assertEqual(CapabilityRouter(registry).resolve('x')['id'],'fallback')
 if __name__=='__main__':unittest.main()

@@ -13,7 +13,8 @@
       "id": "step-1",
       "agent_id": "hypothesis-formulator",
       "skill_ids": [
-        "hypothesis-framing"
+        "hypothesis-framing",
+        "assumption-mapping"
       ],
       "depends_on": [],
       "expected_outputs": [
@@ -27,7 +28,8 @@
       "id": "step-2",
       "agent_id": "evidence-auditor",
       "skill_ids": [
-        "evidence-audit"
+        "evidence-audit",
+        "source-triangulation"
       ],
       "depends_on": [
         "step-1"

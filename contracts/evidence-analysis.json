@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "analysis_quality",
+    "source_diversity",
+    "contradiction_flags",
+    "calibration_notes",
+    "evidence_gaps"
+  ],
+  "properties": {
+    "analysis_quality": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "source_diversity": {
+      "type": "object"
+    },
+    "contradiction_flags": {
+      "type": "array"
+    },
+    "calibration_notes": {
+      "type": "array"
+    },
+    "evidence_gaps": {
+      "type": "array"
+    }
+  }
+}

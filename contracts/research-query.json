@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "query",
+    "intent",
+    "limit"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent": {
+      "enum": [
+        "support",
+        "disconfirm",
+        "discriminate",
+        "refresh",
+        "discover"
+      ]
+    },
+    "limit": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "context": {
+      "type": "object"
+    }
+  }
+}

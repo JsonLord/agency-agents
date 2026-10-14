@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "lane",
+    "checks",
+    "analytical_only"
+  ],
+  "properties": {
+    "lane": {
+      "enum": [
+        "b2b",
+        "b2c",
+        "mixed"
+      ]
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "analytical_only": {
+      "const": true
+    }
+  }
+}

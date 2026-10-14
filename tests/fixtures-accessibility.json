@@ -1,1 +1,18 @@
-{"context":{"workspace_id":"accessibility-rework","hypothesis":{"id":"H1","statement":"Small product teams experience enough costly late accessibility rework to pay for earlier automated review."}},"evidence":[{"id":"E-SUPPORT","claim":"A five-person team spent two sprints correcting late accessibility defects.","polarity":"supporting","source":"interview"},{"id":"E-CONTRARY","claim":"One team reported rare accessibility rework and no budget for another tool.","polarity":"contradicting","source":"interview"}]}
+{
+  "context":{"workspace_id":"accessibility-rework"},
+  "hypothesis":{"id":"H1","statement":"Small product teams experience enough costly late accessibility rework to pay for earlier automated review."},
+  "lane_context":{"buyer_role":"engineering manager","budget":"developer tooling","procurement":true},
+  "assumptions":[
+    {"statement":"Late rework costs exceed an early review subscription","impact":5,"uncertainty":5},
+    {"statement":"Teams can adopt review before release","impact":4,"uncertainty":3}
+  ],
+  "evidence":[
+    {"id":"E-SUPPORT","claim":"A five-person team spent two sprints correcting late accessibility defects.","polarity":"supporting","source":"interview","source_type":"interview","provider":"customer-interview","source_url":"fixture://interview/support"},
+    {"id":"E-CONTRARY","claim":"One team reported rare accessibility rework and no budget for another tool.","polarity":"contradicting","source":"interview","source_type":"interview","provider":"customer-interview","source_url":"fixture://interview/contrary"}
+  ],
+  "provider_results":[
+    {"capability":"research.hackernews","query":"accessibility rework developer teams","items":[{"source_url":"https://news.ycombinator.com/item?id=fixture1","title":"Accessibility debt discussion","content":"A team describes late remediation cost.","author":"fixture-user","published_at":"2025-01-02T00:00:00Z","metadata":{},"polarity":"supporting"}]},
+    {"capability":"research.github","query":"accessibility remediation issues","items":[{"source_url":"https://github.com/example/project/issues/1","title":"Late accessibility remediation","content":"Issue documents remediation but rejects another tool.","author":"fixture-maintainer","published_at":"2025-01-03T00:00:00Z","metadata":{},"polarity":"contradicting"}]},
+    {"capability":"research.web","query":"accessibility shift left rework","items":[{"source_url":"https://example.test/accessibility-study","title":"Shift-left study","content":"Independent study recommends earlier checks.","author":"fixture-researcher","published_at":"2025-01-04T00:00:00Z","metadata":{},"polarity":"supporting"}]}
+  ]
+}
