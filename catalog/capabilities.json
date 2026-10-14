@@ -43,18 +43,8 @@
         "fallback": "research.web",
         "free": true,
         "healthy": true,
-        "id": "github-public",
-        "priority": 10,
-        "rate_limited": false
-      },
-      {
-        "auth_env": "GITHUB_TOKEN",
-        "available": true,
-        "fallback": "github-public",
-        "free": true,
-        "healthy": true,
         "id": "github-api",
-        "priority": 20,
+        "priority": 10,
         "rate_limited": false
       }
     ],
@@ -65,7 +55,7 @@
     "id": "research.reddit",
     "providers": [
       {
-        "auth_env": "REDDIT_CLIENT_ID",
+        "auth_env": "REDDIT_ACCESS_TOKEN",
         "available": true,
         "fallback": "research.web",
         "free": true,

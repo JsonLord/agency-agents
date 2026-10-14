@@ -40,23 +40,13 @@
       "approval": "none",
       "providers": [
         {
-          "id": "github-public",
+          "id": "github-api",
           "priority": 10,
           "free": true,
           "available": true,
           "healthy": true,
           "auth_env": null,
           "fallback": "research.web",
-          "rate_limited": false
-        },
-        {
-          "id": "github-api",
-          "priority": 20,
-          "free": true,
-          "available": true,
-          "healthy": true,
-          "auth_env": "GITHUB_TOKEN",
-          "fallback": "github-public",
           "rate_limited": false
         }
       ]
@@ -72,7 +62,7 @@
           "free": true,
           "available": true,
           "healthy": true,
-          "auth_env": "REDDIT_CLIENT_ID",
+          "auth_env": "REDDIT_ACCESS_TOKEN",
           "fallback": "research.web",
           "rate_limited": false
         }

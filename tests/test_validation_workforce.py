@@ -1,5 +1,6 @@
 import copy,importlib.util,json,tempfile,unittest
 from pathlib import Path
+from urllib.error import HTTPError
 from jsonschema import Draft7Validator
 from gateways.capabilities.router import CapabilityRouter
 from gateways.delegation.runtime import delegate
@@ -86,6 +87,20 @@ class Tests(unittest.TestCase):
   self.assertEqual(calls[0][0:2],('POST','https://nodepad.test/api/v1/workspaces/workspace/evidence'));self.assertEqual(calls[0][2]['Authorization'],'Bearer secret');self.assertEqual(calls[0][2]['Idempotency-Key'],'stable')
   with self.assertRaises(ValueError):client.submit_evidence({'nested':{'qualification_band':'strong'}})
   self.assertEqual(len(calls),1)
+  encoded=NodepadClient('https://nodepad.test',workspace_id='team/alpha',transport=transport);encoded.context()
+  self.assertEqual(calls[-1][1],'https://nodepad.test/api/v1/workspaces/team%2Falpha/context')
+ def test_nodepad_http_errors_are_sanitized(self):
+  client=NodepadClient('https://nodepad.test','top-secret','workspace')
+  def fail(*_args,**_kwargs):raise HTTPError('https://nodepad.test',403,'Bearer top-secret',{},None)
+  import gateways.nodepad.client as module
+  original=module.urlopen;module.urlopen=fail
+  try:
+   with self.assertRaisesRegex(RuntimeError,r'nodepad_http_error status=403') as raised:client.context()
+   self.assertNotIn('top-secret',str(raised.exception))
+  finally:module.urlopen=original
+ def test_default_registry_maps_to_real_provider_ids(self):
+  resolved=CapabilityRouter().resolve_path('research.github')
+  self.assertEqual(resolved['provider'],'github-api')
  def test_lane_mixed_and_quality_vector(self):
   lane=analyze_lane({'budget':True,'habit':True});self.assertEqual(lane['lane'],'mixed');self.assertIn('budget',lane['signals']['b2b']);self.assertIn('habit',lane['signals']['b2c']);self.assertIn('roi_threshold',lane['checks']);self.assertIn('retention',lane['checks'])
   empty=analyze_evidence([]);self.assertEqual(empty['analysis_quality'],0);self.assertEqual(set(empty['quality_dimensions']),{'directness','recency','source_independence','behavioral_strength','segment_relevance','contradiction_coverage','triangulation'})

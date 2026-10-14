@@ -18,7 +18,7 @@ Statuses below require executable proof; documentation alone is never a pass.
 
 ## Donor integration evidence
 
-`PYTHONPATH=. python3 -m unittest discover -s tests -v` runs 14 tests covering donor methods, provider normalization and degradation, provenance/idempotency, Nodepad boundary enforcement, the catalogs, workflows, Hermes, delegation, telemetry and the enriched fixture. Provider adapters are locally and deterministically proven with mocked results. Live Hacker News, GitHub, web, Reddit and Trends access remains `READY_CONFIG`; availability, credentials and rate limits are external and no live result is claimed.
+`PYTHONPATH=. python3 -m unittest discover -s tests -v` runs 20 deterministic tests (plus four opt-in integration tests skipped by default) covering donor methods, provider normalization and degradation, provenance/idempotency, Nodepad boundary enforcement, the catalogs, workflows, Hermes, delegation, telemetry and the enriched fixture. Provider adapters are locally and deterministically proven with mocked results. Live Hacker News, GitHub, web, Reddit and Trends access remains `BLOCKED_EXTERNAL` in this environment because its outbound proxy rejects the requests; no live result is claimed.
 
 The authoritative-state boundary is executable: `validate_agent_result` rejects canonical qualification fields and `MockNodepad.submit_evidence` rejects the same fields at the gateway. Agency analysis uses only non-authoritative analysis terminology.
 
@@ -27,3 +27,10 @@ The authoritative-state boundary is executable: `validate_agent_result` rejects 
 - G4 remains `PASS_MOCK / BLOCKED_EXTERNAL live` in this execution environment: `NODEPAD_LIVE_TEST=1 ... python3 -m unittest tests.integration.test_nodepad_live -v` could not reach the deployed Space because the environment's outbound tunnel returned HTTP 403 before the remote service. No live pass is claimed.
 - G5 is `PASS_LOCAL`; real provider adapters and fallback traversal are covered by the normal unit suite. Opt-in provider smoke tests are separate from deterministic CI and must be classified from their actual run.
 - Nodepad authority enforcement now executes recursively in both the production client and mock adapter, before HTTP writes.
+- Production Nodepad failures are sanitized so neither authorization values nor
+  upstream response bodies can enter logs, and workspace IDs are encoded as a
+  single URL segment. The live probe reached no remote endpoint because the
+  execution environment rejected the HTTPS tunnel before authentication.
+- Registry provider IDs now resolve to actual adapters: public GitHub access is
+  handled by `github-api` with an optional `GITHUB_TOKEN`, and Reddit runtime
+  availability uses the same `REDDIT_ACCESS_TOKEN` reference as its adapter.
