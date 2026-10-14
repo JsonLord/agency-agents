@@ -6,11 +6,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
-mkdir -p "$scratch/repo/scripts" "$scratch/repo/agents/discovery" \
+mkdir -p "$scratch/repo/scripts" "$scratch/repo/engineering" \
   "$scratch/repo/integrations/openclaw/example-agent" "$scratch/bin"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$scratch/repo/scripts/"
 cp "$SCRIPT_DIR/../divisions.json" "$scratch/repo/"
-cat > "$scratch/repo/agents/discovery/example.md" <<'EOF'
+cat > "$scratch/repo/engineering/example.md" <<'EOF'
 ---
 name: Example Agent
 description: Example

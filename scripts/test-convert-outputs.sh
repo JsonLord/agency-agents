@@ -85,13 +85,13 @@ divisions_from_json() {
 
 SOURCES="$TMP/sources.tsv"; : > "$SOURCES"
 while IFS= read -r div; do
-  [[ -n "$div" && -d "$REPO_ROOT/$div" ]] || continue
+  [[ -n "$div" && -d "$REPO_ROOT/agents/$div" ]] || continue
   while IFS= read -r f; do
     [[ "$(head -1 "$f")" == "---" ]] || continue
     printf '%s\t%s\t%s\t%s\n' \
       "$(agent_slug "$f")" "$(get_field description "$f")" "$(get_field name "$f")" "${f#"$REPO_ROOT"/}" \
       >> "$SOURCES"
-  done < <(find "$REPO_ROOT/$div" -name '*.md' -type f | sort)
+  done < <(find "$REPO_ROOT/agents/$div" -name '*.md' ! -name 'README.md' -type f | sort)
 done < <(divisions_from_json)
 N="$(wc -l < "$SOURCES" | tr -d ' ')"
 [[ "$N" -gt 0 ]] || { echo "ERROR: no source agents found." >&2; exit 2; }
