@@ -6,17 +6,17 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 tmp="$(mktemp -d "${TMPDIR:-/tmp}/agency-convert-failure.XXXXXX")"
 trap 'rm -rf "$tmp"' EXIT
 
-mkdir -p "$tmp/repo/scripts" "$tmp/repo/integrations/codex" "$tmp/repo/engineering" "$tmp/home"
+mkdir -p "$tmp/repo/scripts" "$tmp/repo/integrations/codex" "$tmp/repo/agents/discovery" "$tmp/home"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$tmp/repo/scripts/"
 cat > "$tmp/repo/divisions.json" <<'EOF'
 {
   "divisions": {
-    "engineering": {}
+    "discovery": {}
   }
 }
 EOF
 for name in first second; do
-  cat > "$tmp/repo/engineering/$name.md" <<EOF
+  cat > "$tmp/repo/agents/discovery/$name.md" <<EOF
 ---
 name: $name
 description: $name agent

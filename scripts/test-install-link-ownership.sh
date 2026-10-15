@@ -3,15 +3,15 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
-mkdir -p "$scratch/repo/scripts" "$scratch/repo/engineering" "$scratch/repo/integrations" "$scratch/home"
+mkdir -p "$scratch/repo/scripts" "$scratch/repo/agents/discovery" "$scratch/repo/integrations" "$scratch/home"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$scratch/repo/scripts/"
 cp "$SCRIPT_DIR/../divisions.json" "$scratch/repo/"
 export HOME="$scratch/home"
 for agent in first second; do
-  printf '%s\n' '---' "name: $agent" 'description: Example agent' 'color: blue' '---' '# Example agent' > "$scratch/repo/engineering/$agent.md"
+  printf '%s\n' '---' "name: $agent" 'description: Example agent' 'color: blue' '---' '# Example agent' > "$scratch/repo/agents/discovery/$agent.md"
 done
 run_install() {
-  bash "$scratch/repo/scripts/install.sh" --tool claude-code --division engineering \
+  bash "$scratch/repo/scripts/install.sh" --tool claude-code --division discovery \
     --no-convert --link --path "$scratch/dest" > "$scratch/result.log" 2>&1
 }
 mkdir -p "$scratch/dest"
@@ -37,11 +37,11 @@ for kind in foreign dangling directory; do
   [[ "$kind" != directory ]] || [[ ! -e "$target/first.md" ]]
 done
 rm -f "$scratch/dest/first.md"
-ln -s "$scratch/repo/engineering/old.md" "$scratch/dest/first.md"
+ln -s "$scratch/repo/agents/discovery/old.md" "$scratch/dest/first.md"
 run_install
-[[ "$(readlink "$scratch/dest/first.md")" == "$scratch/repo/engineering/first.md" ]]
+[[ "$(readlink "$scratch/dest/first.md")" == "$scratch/repo/agents/discovery/first.md" ]]
 run_install
-[[ "$(readlink "$scratch/dest/first.md")" == "$scratch/repo/engineering/first.md" ]]
+[[ "$(readlink "$scratch/dest/first.md")" == "$scratch/repo/agents/discovery/first.md" ]]
 # A config directory itself may be a user's dotfiles link; protect leaf files.
 mv "$scratch/dest" "$scratch/dotfiles"
 ln -s "$scratch/dotfiles" "$scratch/dest"

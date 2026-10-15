@@ -5,18 +5,18 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 tmp="$(mktemp -d "${TMPDIR:-/tmp}/agency-all-path.XXXXXX")"
 trap 'rm -rf "$tmp"' EXIT
-mkdir -p "$tmp/repo/scripts" "$tmp/repo/engineering" \
+mkdir -p "$tmp/repo/scripts" "$tmp/repo/agents/discovery" \
   "$tmp/repo/integrations/gemini-cli/agents" "$tmp/repo/integrations/qwen/agents" \
   "$tmp/home/.gemini" "$tmp/home/.qwen"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$tmp/repo/scripts/"
 cat > "$tmp/repo/divisions.json" <<'EOF'
 {
   "divisions": {
-    "engineering": {}
+    "discovery": {}
   }
 }
 EOF
-cat > "$tmp/repo/engineering/agent.md" <<'EOF'
+cat > "$tmp/repo/agents/discovery/agent.md" <<'EOF'
 ---
 name: Shared Agent
 description: Example agent
