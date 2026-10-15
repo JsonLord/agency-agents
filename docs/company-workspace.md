@@ -1,0 +1,2 @@
+# GitHub company workspace
+The `templates/company-workspace` contract stores raw provenance, reproducible analysis, working findings, founder queues, reports, presentations, demos, and immutable dashboard snapshots. It is durable research workspace—not a replacement for Nodepad canonical truth. `findings.json` uses candidate/criterion_met/criterion_not_met/insufficient/contested only. Nodepad IDs are references after API acceptance.

@@ -11,3 +11,6 @@ The canonical active surface is `agents/<division>/`. Preserved upstream persona
 ## Hardened production boundary
 
 Production HTTP writes are guarded at the Nodepad gateway itself, not only by orchestration or test harnesses. Agency-generated evidence analysis is a seven-dimension, explicitly non-authoritative vector; Nodepad alone owns canonical confidence and qualification.
+
+## Evidence and executive reporting extension
+GitHub is the durable working research/artifact layer: raw collections, reproducible code, non-authoritative findings, immutable KPI snapshots, reports, decks, and demos. Nodepad still exclusively owns canonical evidence, hypotheses, confidence, qualification, experiment state, and decisions. Community Scout collects; Customer Investigator analyzes and passes candidates through `validation_workforce/evidence_gate.py`; Founder Intelligence Reporter interprets deterministic history. Neither GitHub findings nor dashboard momentum are venture truth.

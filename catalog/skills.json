@@ -70,6 +70,13 @@
     "version": "1.0.0"
   },
   {
+    "description": "Longitudinal founder reporting that separates activity, evidence, validation, and traction.",
+    "id": "founder-intelligence-reporting",
+    "name": "founder-intelligence-reporting",
+    "source": "skills/founder-intelligence-reporting/SKILL.md",
+    "version": "1.0.0"
+  },
+  {
     "description": "A reusable skill for crafting clear, testable venture hypotheses from problem insights and assumptions.",
     "id": "hypothesis-framing",
     "name": "hypothesis-framing",

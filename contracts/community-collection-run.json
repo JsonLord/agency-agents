@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/community-collection-run.json",
+  "title": "community-collection-run",
+  "type": "object",
+  "required": [
+    "id",
+    "hypothesis_id",
+    "research_gap_ids",
+    "collected_at",
+    "items"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "hypothesis_id": {
+      "type": "string"
+    },
+    "research_gap_ids": {
+      "type": "array"
+    },
+    "collected_at": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

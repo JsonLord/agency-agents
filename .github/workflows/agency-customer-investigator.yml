@@ -1,0 +1,22 @@
+name: Agency Customer Investigator
+on:
+  workflow_dispatch:
+    inputs:
+      hypothesis_id: {required: true, type: string}
+      collection_path: {required: true, type: string}
+      analysis_run_id: {required: true, type: string}
+      workspace_id: {required: true, type: string}
+      nodepad_workspace_id: {required: false, type: string}
+jobs:
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements-dev.txt pandas
+      - name: Validate and analyze fixture-compatible collection
+        run: PYTHONPATH=. python scripts/analyze-customer-collection.py --input "${{ inputs.collection_path }}" --output "artifacts/${{ inputs.analysis_run_id }}" --findings findings.json
+      - run: python scripts/validate-contracts.py && PYTHONPATH=. python -m unittest discover -s tests -v
+      - uses: actions/upload-artifact@v4
+        with: {name: customer-analysis, path: "artifacts/${{ inputs.analysis_run_id }}"}

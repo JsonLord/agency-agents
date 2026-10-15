@@ -34,3 +34,8 @@ The authoritative-state boundary is executable: `validate_agent_result` rejects 
 - Registry provider IDs now resolve to actual adapters: public GitHub access is
   handled by `github-api` with an optional `GITHUB_TOKEN`, and Reddit runtime
   availability uses the same `REDDIT_ACCESS_TOKEN` reference as its adapter.
+
+## Evidence pipeline extension
+- Local evidence gate, runtime metadata, findings idempotency, deterministic dashboard metrics, immutable daily history, and golden transfer fixture: `PASS_LOCAL` via `PYTHONPATH=. python3 -m unittest tests.test_founder_intelligence -v`.
+- Customer Investigator and Reporter Actions are fixture-capable without production secrets; Nodepad submission and email delivery remain opt-in (`READY_CONFIG`).
+- Dashboard deployment is deliberately disabled by default; the build is an artifact, not a public site.

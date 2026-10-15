@@ -28,12 +28,12 @@ source "$SCRIPT_DIR/lib.sh"
 expected=0
 while IFS= read -r -d '' file; do
   is_agent_file "$file" && expected=$((expected + 1))
-done < <(find "$REPO_ROOT/engineering" -name '*.md' -type f -print0)
+done < <(find "$REPO_ROOT/agents/discovery" -name '*.md' -type f -print0)
 HOME="$tmp/home" bash "$SCRIPT_DIR/install.sh" --no-interactive --tool claude-code \
-  --division engineering --path "$tmp/agents" > "$tmp/output" 2>&1
+  --division discovery --path "$tmp/agents" > "$tmp/output" 2>&1
 actual="$(find "$tmp/agents" -maxdepth 1 -name '*.md' -type f | wc -l | tr -d ' ')"
 if [[ "$actual" != "$expected" ]]; then
-  printf 'FAIL: engineering install copied %s of %s source agents\n' "$actual" "$expected" >&2
+  printf 'FAIL: discovery install copied %s of %s source agents\n' "$actual" "$expected" >&2
   exit 1
 fi
-echo "PASS: engineering install copies all $expected selected agents"
+echo "PASS: discovery install copies all $expected selected agents"

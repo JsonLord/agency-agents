@@ -1,0 +1,31 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/provenance-record.json",
+  "title": "provenance-record",
+  "type": "object",
+  "required": [
+    "source_url",
+    "source_platform",
+    "collected_at",
+    "query",
+    "collection_run_id"
+  ],
+  "properties": {
+    "source_url": {
+      "type": "string"
+    },
+    "source_platform": {
+      "type": "string"
+    },
+    "collected_at": {
+      "type": "string"
+    },
+    "query": {
+      "type": "string"
+    },
+    "collection_run_id": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -5,6 +5,7 @@
   "academic/academic-narratologist": "legacy-agents/academic/academic-narratologist.md",
   "academic/academic-psychologist": "legacy-agents/academic/academic-psychologist.md",
   "academic/academic-statistician": "legacy-agents/academic/academic-statistician.md",
+  "decision/founder-intelligence-reporter": "agents/decision/founder-intelligence-reporter.md",
   "decision/kill-agent": "agents/decision/kill-agent.md",
   "decision/pivot-strategist": "agents/decision/pivot-strategist.md",
   "decision/portfolio-allocator": "agents/decision/portfolio-allocator.md",

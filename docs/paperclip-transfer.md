@@ -1,0 +1,2 @@
+# Paperclip transfer mapping
+No Paperclip code is integrated here. Agency metadata maps mechanically later: `github-actions` → GitHub Actions adapter; `jules` → Jules adapter; `hermes-hf` → Hermes remote-agent adapter. Schedule fields map to `runtimeConfig.heartbeat`; required tools/capabilities map to Paperclip capability requirements; Agency write scopes map to adapter write scopes; credential environment references map to company-scoped secrets. Paperclip must preserve Nodepad as canonical validation authority.

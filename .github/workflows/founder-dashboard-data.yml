@@ -1,0 +1,15 @@
+name: Founder Dashboard Data
+on:
+  workflow_dispatch:
+  schedule: [{cron: '17 */2 * * *'}]
+jobs:
+  dashboard:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: PYTHONPATH=. python scripts/build-founder-dashboard.py --input tests/fixtures/company/operating-data.json --workspace /tmp/company
+      - run: test ! -e .github/workflows/pages.yml
+      - uses: actions/upload-artifact@v4
+        with: {name: founder-dashboard-data, path: /tmp/company/dashboard}

@@ -5,6 +5,43 @@
       "external_write": "required"
     },
     "bias": [
+      "anti-vanity-metrics",
+      "disconfirmation"
+    ],
+    "capabilities": [
+      "artifact.generate"
+    ],
+    "color": "#334155",
+    "description": "Independent executive observer for longitudinal validation progress, workforce value, and founder attention.",
+    "division": "decision",
+    "emoji": "",
+    "id": "founder-intelligence-reporter",
+    "name": "Founder Intelligence Reporter",
+    "reads": [
+      "nodepad.context",
+      "nodepad.hypotheses",
+      "nodepad.evidence"
+    ],
+    "runtime": {
+      "frontend": "jules",
+      "primary": "github-actions"
+    },
+    "skills": [
+      "founder-intelligence-reporting",
+      "evidence-audit"
+    ],
+    "source": "agents/decision/founder-intelligence-reporter.md",
+    "vibe": "skeptical, longitudinal, action-oriented",
+    "writes": [
+      "research_gap"
+    ]
+  },
+  {
+    "aliases": [],
+    "approval": {
+      "external_write": "required"
+    },
+    "bias": [
       "disconfirmation"
     ],
     "capabilities": [
@@ -143,32 +180,33 @@
       "external_write": "required"
     },
     "bias": [
-      "disconfirmation"
+      "contradiction-seeking"
     ],
     "capabilities": [
       "research.web",
-      "research.reddit",
-      "research.linkedin"
+      "research.reddit"
     ],
     "color": "#00BCD4",
-    "description": "A specialist who identifies and engages with communities where target customers congregate to understand shared problems and language.",
+    "description": "Collection-only specialist acquiring hypothesis-targeted community observations with complete provenance.",
     "division": "discovery",
     "emoji": "",
     "id": "community-scout",
     "name": "Community Scout",
     "reads": [
       "nodepad.context",
-      "nodepad.hypotheses",
-      "nodepad.evidence"
+      "nodepad.hypotheses"
     ],
+    "runtime": {
+      "fallback": "github-actions",
+      "primary": "hermes-hf"
+    },
     "skills": [
-      "customer-interview",
-      "community-discovery"
+      "community-discovery",
+      "source-triangulation"
     ],
     "source": "agents/discovery/community-scout.md",
-    "vibe": "evidence-led",
+    "vibe": "careful collector",
     "writes": [
-      "evidence_submission",
       "research_gap"
     ]
   },
@@ -181,11 +219,10 @@
       "disconfirmation"
     ],
     "capabilities": [
-      "research.web",
-      "research.reddit"
+      "artifact.generate"
     ],
-    "color": "#FFC107",
-    "description": "A specialist who investigates customer problems, behaviors, and motivations through interviews and empathy.",
+    "color": "#2196F3",
+    "description": "Reproducible pandas evidence analyst for customer datasets collected against explicit hypotheses.",
     "division": "discovery",
     "emoji": "",
     "id": "customer-investigator",
@@ -195,14 +232,18 @@
       "nodepad.hypotheses",
       "nodepad.evidence"
     ],
+    "runtime": {
+      "fallback": "hermes-hf",
+      "primary": "github-actions"
+    },
     "skills": [
-      "customer-interview",
       "pain-mining",
       "customer-language",
-      "jtbd"
+      "evidence-audit",
+      "source-triangulation"
     ],
     "source": "agents/discovery/customer-investigator.md",
-    "vibe": "evidence-led",
+    "vibe": "reproducible and skeptical",
     "writes": [
       "evidence_submission",
       "research_gap"

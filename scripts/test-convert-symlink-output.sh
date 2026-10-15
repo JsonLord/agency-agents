@@ -6,10 +6,10 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 scratch="$(mktemp -d)"
 trap 'rm -rf "$scratch"' EXIT
 
-mkdir -p "$scratch/repo/scripts" "$scratch/repo/engineering" \
+mkdir -p "$scratch/repo/scripts" "$scratch/repo/agents/discovery" \
   "$scratch/output" "$scratch/private/agents"
 cp "$SCRIPT_DIR/convert.sh" "$SCRIPT_DIR/lib.sh" "$scratch/repo/scripts/"
-cat > "$scratch/repo/engineering/example.md" <<'EOF'
+cat > "$scratch/repo/agents/discovery/example.md" <<'EOF'
 ---
 name: Example Agent
 description: Example
@@ -20,7 +20,7 @@ EOF
 
 printf 'private content\n' > "$scratch/private/agents/example-agent.md"
 ln -s "$scratch/private" "$scratch/output/gemini-cli"
-if bash "$scratch/repo/scripts/convert.sh" --tool gemini-cli --out "$scratch/output" > "$scratch/log" 2>&1; then
+if AGENT_DIRS_OVERRIDE=discovery AGENT_DIRS_OVERRIDE=discovery bash "$scratch/repo/scripts/convert.sh" --tool gemini-cli --out "$scratch/output" > "$scratch/log" 2>&1; then
   echo 'FAIL: converter accepted a symlinked output directory' >&2
   exit 1
 fi

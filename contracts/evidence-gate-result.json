@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/evidence-gate-result.json",
+  "title": "evidence-gate-result",
+  "type": "object",
+  "required": [
+    "state",
+    "metrics",
+    "hypothesis_id",
+    "criterion"
+  ],
+  "properties": {
+    "state": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "object"
+    },
+    "hypothesis_id": {
+      "type": "string"
+    },
+    "criterion": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -17,7 +17,7 @@ from gateways.nodepad.client import NodepadClient
 
 class Tests(unittest.TestCase):
  def test_catalogs_and_aliases(self):
-  data=build();counts=validate(data);self.assertEqual((counts['agents'],counts['workflows'],counts['capabilities'],counts['legacy-aliases']),(44,13,8,326));self.assertGreaterEqual(counts['skills'],27)
+  data=build();counts=validate(data);self.assertEqual((counts['agents'],counts['workflows'],counts['capabilities'],counts['legacy-aliases']),(45,13,8,327));self.assertGreaterEqual(counts['skills'],27)
   self.assertTrue(all((ROOT/path).is_file() for path in data['legacy-aliases'].values()))
  def test_missing_references_rejected(self):
   data=build();data['agents'][0]['skills'].append('missing')
@@ -47,7 +47,7 @@ class Tests(unittest.TestCase):
   self.assertEqual(len(sink.events),len(VOCABULARY))
  def test_hermes_roster(self):
   spec=importlib.util.spec_from_file_location('builder','scripts/build-hermes-plugin.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);agents={a['slug']:a['division'] for a in m.collect_agents(ROOT)}
-  self.assertEqual(len(agents),44);self.assertEqual({x:agents[x] for x in ['customer-investigator','hypothesis-formulator','experiment-designer','red-team-analyst','venture-judge']},{'customer-investigator':'discovery','hypothesis-formulator':'hypothesis','experiment-designer':'experimentation','red-team-analyst':'evaluation','venture-judge':'decision'})
+  self.assertEqual(len(agents),45);self.assertEqual({x:agents[x] for x in ['customer-investigator','hypothesis-formulator','experiment-designer','red-team-analyst','venture-judge']},{'customer-investigator':'discovery','hypothesis-formulator':'hypothesis','experiment-designer':'experimentation','red-team-analyst':'evaluation','venture-judge':'decision'})
  def test_e2e(self):
   result=run(json.loads(Path('tests/fixtures-accessibility.json').read_text()));self.assertEqual([result[x] for x in ('support','contradictory','counter_hypothesis','research_gap','experiment','authoritative_qualification')],[1,1,1,1,1,0]);self.assertEqual(result['external_research'],3);self.assertGreaterEqual(result['source_diversity'],3);self.assertEqual(len(result['nodepad'].state['evidence']),5);Draft7Validator(json.loads(Path('contracts/agent-result.json').read_text())).validate(result['agent_result'])
  def test_product_eval_methods_preserve_contradictions(self):

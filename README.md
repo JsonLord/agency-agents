@@ -1196,3 +1196,6 @@ Validate the control plane with `PYTHONPATH=. ./scripts/workforce.py catalog-val
 ## Production integration hardening
 
 Research capabilities have distinct real HTTP adapters and deterministic static test adapters. Semantic routing exposes fallback paths, while every production Nodepad write passes a recursive authority-boundary check and supports deterministic idempotency keys. Live network tests are opt-in and never run in normal CI.
+
+## Evidence pipeline and founder intelligence
+The active workforce now includes 45 personas. Community Scout performs provenance-preserving collection, Customer Investigator runs reproducible dataset analysis through a deterministic evidence gate, and Founder Intelligence Reporter interprets longitudinal metrics without inventing chart values. `templates/company-workspace/` defines durable GitHub research artifacts while Nodepad remains the sole canonical validation authority. Runtime bindings are declared under `runtime/`; dashboards are private build artifacts by default. See `docs/company-workspace.md`, `docs/founder-dashboard.md`, and `docs/paperclip-transfer.md`.

@@ -1,0 +1,2 @@
+# Founder Operating Dashboard Design
+Founder attention dominates. Prefer editorial hierarchy and dense, legible evidence over decorative cards. Charts show 7/30/90-day history, portfolio movement, funnel, evidence composition, gate trends, experiment cycle/outcomes, blockers, useful work, economics, agent effectiveness, pain themes, and annotated events. Render accessible desktop (1440/1920) and mobile (390) layouts. Support empty and extreme datasets, light/dark color schemes, and never publish publicly by default.

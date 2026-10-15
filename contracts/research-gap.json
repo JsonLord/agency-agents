@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/research-gap.json",
+  "title": "research-gap",
+  "type": "object",
+  "required": [
+    "id",
+    "hypothesis_id",
+    "question",
+    "reason"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "hypothesis_id": {
+      "type": "string"
+    },
+    "question": {
+      "type": "string"
+    },
+    "reason": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

@@ -72,3 +72,6 @@ To design and produce visual experiments (images, graphics, videos, prototypes) 
 - Do not treat visual experiments as validated product without further testing
 - Do not assign hypothesis qualification (Nodepad's role)
 - Do not build full visual systems based on experiments alone
+
+## Presentation runtime modes
+Deck mode uses **Jules**, Stitch, open-slide, and Playwright. Read `DESIGN.md`, derive native `<theme>.md` and `<theme>.demo.tsx` via open-slide theme skills, then author and visually inspect HTML/PDF/PPTX outputs. Preserve the authority's palette, typography, spacing, visual language, and motion. Image/tool-heavy mode falls back to Hermes HF or a future Docker Agent. Runs occur only on assignment or milestone.

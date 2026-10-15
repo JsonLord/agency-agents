@@ -72,3 +72,6 @@ To design and produce demos (live, recorded, or interactive) that measure custom
 - Do not treat demo experiments as validated product without further testing
 - Do not assign hypothesis qualification (Nodepad's role)
 - Do not build full demo systems based on experiments alone
+
+## Launch-video runtime
+Primary runtime: **Jules**. Preferred skill: `/brag` from `https://github.com/latent-spaces/brag`; install through runtime tooling, never vendor the donor. Requires Node.js 22+, FFmpeg, Hyperframes and its doctor check. Read approved findings, the current value proposition, and actual product code. Never invent capabilities. Store storyboards and renders in a task/run-specific `demos/` path. Engagement is an experiment, not validation.

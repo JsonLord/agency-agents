@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/founder-reporter.json",
+  "title": "founder-reporter",
+  "type": "object",
+  "required": [
+    "trajectory",
+    "executive_summary",
+    "main_bottleneck",
+    "largest_opportunity",
+    "founder_actions",
+    "celebrations",
+    "decisions",
+    "concerns",
+    "opportunity_seeds"
+  ],
+  "properties": {
+    "trajectory": {
+      "type": "string"
+    },
+    "executive_summary": {
+      "type": "string"
+    },
+    "main_bottleneck": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "largest_opportunity": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "founder_actions": {
+      "type": "array"
+    },
+    "celebrations": {
+      "type": "array"
+    },
+    "decisions": {
+      "type": "array"
+    },
+    "concerns": {
+      "type": "array"
+    },
+    "opportunity_seeds": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

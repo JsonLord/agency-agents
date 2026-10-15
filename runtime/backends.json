@@ -1,0 +1,1 @@
+{"backends":[{"id":"github-actions","adapter_type":"github-actions","daily_source_mutation":false},{"id":"hermes-hf","adapter_type":"hermes-remote"},{"id":"jules","adapter_type":"jules","purpose":"assigned frontend, deck, and demo development"}]}

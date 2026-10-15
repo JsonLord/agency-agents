@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://agency-agents.local/contracts/customer-analysis-run.json",
+  "title": "customer-analysis-run",
+  "type": "object",
+  "required": [
+    "id",
+    "hypothesis_id",
+    "criterion",
+    "collection_runs",
+    "analysis_file",
+    "observations"
+  ],
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "hypothesis_id": {
+      "type": "string"
+    },
+    "criterion": {
+      "type": "string"
+    },
+    "collection_runs": {
+      "type": "array"
+    },
+    "analysis_file": {
+      "type": "string"
+    },
+    "observations": {
+      "type": "array"
+    }
+  },
+  "additionalProperties": true
+}

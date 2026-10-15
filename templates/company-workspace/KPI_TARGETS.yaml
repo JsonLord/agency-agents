@@ -1,0 +1,5 @@
+validation: 10
+customer_pull: 10
+experiment_engine: 5
+execution: 0.8
+efficiency: 0.7
