@@ -8,13 +8,13 @@ trap 'rm -rf "$tmp"' EXIT
 repo="$tmp/repo"
 home="$tmp/home"
 plugin="$home/.hermes/plugins/agency-agents-router"
-mkdir -p "$repo/scripts" "$repo/engineering" \
+mkdir -p "$repo/scripts" "$repo/agents/discovery" \
   "$repo/integrations/hermes/agency-agents-router/data" "$plugin"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$repo/scripts/"
 cat > "$repo/divisions.json" <<'EOF'
 {
   "divisions": {
-    "engineering": {}
+    "discovery": {}
   }
 }
 EOF

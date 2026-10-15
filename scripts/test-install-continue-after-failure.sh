@@ -14,18 +14,18 @@ trap 'rm -rf "$tmp"' EXIT
 
 fail() { echo "FAIL: $*" >&2; sed 's/^/    /' "$tmp/output" >&2; exit 1; }
 
-mkdir -p "$tmp/repo/scripts" "$tmp/repo/engineering" \
+mkdir -p "$tmp/repo/scripts" "$tmp/repo/agents/discovery" \
   "$tmp/repo/integrations/gemini-cli/agents" "$tmp/repo/integrations/qwen/agents" \
   "$tmp/home/project"
 cp "$SCRIPT_DIR/install.sh" "$SCRIPT_DIR/lib.sh" "$tmp/repo/scripts/"
 cat > "$tmp/repo/divisions.json" <<'EOF'
 {
   "divisions": {
-    "engineering": {}
+    "discovery": {}
   }
 }
 EOF
-cat > "$tmp/repo/engineering/agent.md" <<'EOF'
+cat > "$tmp/repo/agents/discovery/agent.md" <<'EOF'
 ---
 name: Sample Agent
 description: Example agent
