@@ -116,9 +116,9 @@ fi
 # 7. convert_openclaw shares the helper, so the section after an indented closer
 #    belongs in AGENTS.md; on the old helper it stayed inside the open SOUL
 #    section and AGENTS.md lost it.
-mkdir -p "$FIXTURE/repo/scripts" "$FIXTURE/repo/engineering" "$FIXTURE/output"
+mkdir -p "$FIXTURE/repo/scripts" "$FIXTURE/repo/agents/discovery" "$FIXTURE/output"
 cp "$SCRIPT_DIR/convert.sh" "$SCRIPT_DIR/lib.sh" "$FIXTURE/repo/scripts/"
-cat > "$FIXTURE/repo/engineering/fence-fixture.md" <<'EOF'
+cat > "$FIXTURE/repo/agents/discovery/fence-fixture.md" <<'EOF'
 ---
 name: Fence Fixture
 description: Fixture agent for indented closing fences
